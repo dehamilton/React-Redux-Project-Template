@@ -1,0 +1,15 @@
+{
+	"plugins": ["transform-react-jsx"],
+  "presets": ["es2015", "stage-0", "react"],
+  "env": {
+    "development": {
+      "plugins": [["react-transform", {
+        "transforms": [{
+          "transform": "react-transform-hmr",
+          "imports": ["react"],
+          "locals": ["module"]
+        }]
+      }]]
+    }
+  }
+}

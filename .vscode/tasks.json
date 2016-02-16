@@ -1,0 +1,28 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team
+// ${file}: the current opened file
+// ${fileBasename}: the current opened file's basename
+// ${fileDirname}: the current opened file's dirname
+// ${fileExtname}: the current opened file's extension
+// ${cwd}: the current working directory of the spawned process
+
+//webpack production build script
+{
+	"version": "0.1.0",
+	"command": "build.bat",
+	"isShellCommand": true,
+	"args": [
+		
+	],
+	"echoCommand": true,
+	"tasks": [
+		{
+			"args": [
+				
+			],
+			"suppressTaskName": true,
+			"taskName": "webpack dist",
+			"isBuildCommand": true
+		}
+	]
+}
