@@ -15,9 +15,13 @@ Currently, to prevent build errors you will need to manually edit a few .babelrc
 ```
 
 Update the following packages' .babelrc file:
+
 -- base16
+
 -- react-pure-render
+
 -- redux-promise/node_modules/flux-standard-action
+
 
 Now you can run
 ```js
