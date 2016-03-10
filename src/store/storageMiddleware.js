@@ -1,24 +1,32 @@
-import { FORMS_FORM_EDITOR_FORMS_REGISTERED_TRIGGER } from '../actions/actionConstants';
-import { registerFormsOpen } from '../actions/';
-import { pluck, indexOf } from 'lodash';
-import browserStorage from '../utils/storage';
+/* eslint no-unused-vars: [2, { "args": "none" }] */
+
+// import { ITEM_SELECTED, FILTER_RESET, SELECTED_ITEMS_ACTION } from '../actions/actionConstants';
+// import { map, indexOf } from 'lodash';
+// import browserStorage from '../utils/storage';
 
 const storageMiddleware = store => next => action => {
-	let result = next(action);
+  const result = next(action);
 	
-	let formsObject = browserStorage.getJson('forms');
-	if (action.type === FORMS_FORM_EDITOR_FORMS_REGISTERED_TRIGGER) {
-		if (formsObject !== null) {
-			let forms = formsObject.formsSelected;
-			store.dispatch(registerFormsOpen(forms));
-		}
-    
-    formsObject = { formsSelected: [] }; // clear out when finished
-	}
+  // let formsObject = browserStorage.getJson('forms');
   
-	browserStorage.setJson('forms', formsObject);
+  // browserStorage.setJson('forms', formsObject);
 	
-	return result;
+  return result;
 };
 
 export default storageMiddleware;
+
+// const runOutsideEvent = store => next => action => {
+//     let p = new Promise(function(resolve, reject) {
+//       resolve('resolved!');
+//     });
+    
+//     p.then(value => {
+//       console.log('runOutsideEvent promise.then', value);
+//       setTimeout(() => {
+//         let result = next(action);
+//         console.log('runOutsideEvent promise.then inside settimeout', value);
+//         return result;
+//       }, 3000);
+//     });
+//   };

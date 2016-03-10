@@ -1,16 +1,21 @@
+/* eslint wrap-iife: 0 */
+/* eslint prefer-rest-params: 0 */
+/* eslint no-cond-assign: 0 */
+
 // Polyfills for IE
 // console and Object.assign
 
 // Console-polyfill. MIT license.
 // https://github.com/paulmillr/console-polyfill
 // Make it safe to do console.log() always.
-(function(global) {
+(function (global) {
   'use strict';
   global.console = global.console || {};
   var con = global.console;
-  var prop, method;
+  var prop;
+  var method;
   var empty = {};
-  var dummy = function() {};
+  var dummy = () => {};
   var properties = 'memory'.split(',');
   var methods = ('assert,clear,count,debug,dir,dirxml,error,exception,group,' +
      'groupCollapsed,groupEnd,info,log,markTimeline,profile,profiles,profileEnd,' +
@@ -28,7 +33,7 @@ if (!Object.assign) {
     enumerable: false,
     configurable: true,
     writable: true,
-    value: function(target) {
+    value(target) {
       'use strict';
       if (target === undefined || target === null) {
         throw new TypeError('Cannot convert first argument to object');
@@ -52,6 +57,6 @@ if (!Object.assign) {
         }
       }
       return to;
-    }
+    },
   });
 }

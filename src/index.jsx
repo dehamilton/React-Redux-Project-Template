@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './containers/app/Root';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 
-//IE...
+// IE...
 require('babel-polyfill');
 
 require('./utils/axios');
