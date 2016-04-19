@@ -8,6 +8,7 @@ module.exports = {
     'es5-shim',
     'es5-shim/es5-sham',
     './src/utils/shims',
+    'babel-polyfill',
     './src/index'
   ],
   output: {

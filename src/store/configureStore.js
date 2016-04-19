@@ -5,7 +5,13 @@ import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
-import storageMiddleware from './storageMiddleware';
+import createStorage from './redux-storage';
+
+// Messaging setup
+// import createPostalMiddleware from '../messaging/postal';
+// const { postalMiddleware, sagaMiddleware } = createPostalMiddleware({ channel: 'BNAPostalChannel', topic: 'files.*' });
+
+const reduxStorage = createStorage();
 
 const loggerMiddleware = createLogger({
   level: 'info',
@@ -15,8 +21,8 @@ const loggerMiddleware = createLogger({
 let createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
     promiseMiddleware,
-    loggerMiddleware,
-    storageMiddleware
+    reduxStorage,
+    loggerMiddleware
   )(createStore);
 
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
@@ -37,7 +43,7 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
       thunkMiddleware,
       promiseMiddleware,
       setWindowState,
-      storageMiddleware,
+      reduxStorage,
       loggerMiddleware),
     DevTools.instrument(),
     persistState(getDebugSessionKey())
@@ -46,7 +52,7 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
   createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
     promiseMiddleware,
-    storageMiddleware
+    reduxStorage
   )(createStore);
 }
 

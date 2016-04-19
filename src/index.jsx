@@ -4,7 +4,7 @@ import Root from './containers/app/Root';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 
 // IE...
-require('babel-polyfill');
+require('es6-promise').polyfill();
 
 require('./utils/axios');
 
