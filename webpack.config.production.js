@@ -1,14 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
 
-
 module.exports = {
   devtool: 'source-map',
   entry: [
     'es5-shim',
     'es5-shim/es5-sham',
     './src/utils/shims',
-    'babel-polyfill',
     './src/index'
   ],
   output: {

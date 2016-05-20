@@ -8,8 +8,8 @@ import rootReducer from '../reducers';
 import createStorage from './redux-storage';
 
 // Messaging setup
-// import createPostalMiddleware from '../messaging/postal';
-// const { postalMiddleware, sagaMiddleware } = createPostalMiddleware({ channel: 'BNAPostalChannel', topic: 'files.*' });
+import createPostalMiddleware from '../messaging/postal';
+const { postalMiddleware, sagaMiddleware } = createPostalMiddleware({ channel: 'BNAPostalChannel', topic: 'template.*' });
 
 const reduxStorage = createStorage();
 
@@ -44,6 +44,8 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
       promiseMiddleware,
       setWindowState,
       reduxStorage,
+      postalMiddleware,
+      sagaMiddleware,
       loggerMiddleware),
     DevTools.instrument(),
     persistState(getDebugSessionKey())
@@ -52,6 +54,8 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
   createStoreWithMiddleware = applyMiddleware(
     thunkMiddleware,
     promiseMiddleware,
+    postalMiddleware,
+    sagaMiddleware,
     reduxStorage
   )(createStore);
 }

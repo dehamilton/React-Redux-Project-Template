@@ -57,47 +57,50 @@ function createSubscription(options, dispatch) {
   });
 }
 
-/**
- * send only if there are subscribers. In this way, we can provide default functionality
- * but allow subscribers to override.
- */
 function sendPostalMessage(options, dispatch, action) {
   const subscribers = postal.getSubscribersFor({ channel: options.channel, topic: action.topic });
+
+  postal.publish({
+    channel: options.channel,
+    topic: action.topic,
+    data: action.data,
+  });
+
   if (subscribers.length !== 0) {
-    postal.publish({
-      channel: options.channel,
-      topic: action.topic,
-      data: action.data,
-    });
-    dispatch(action.completeCallback());
+    if (typeof action.completeCallback !== 'undefined') {
+      dispatch(action.completeCallback());
+    }
   } else {
-    dispatch(action.internalCallback());
+    if (typeof action.internalCallback !== 'undefined') {
+      dispatch(action.internalCallback());
+    }
   }
 
   return;
 }
 
 function requestPostalMessage(options, dispatch, action) {
-  const subscribers = postal.getSubscribersFor({ channel: options.channel, topic: action.topic });
-  if (subscribers.length !== 0) {
-    const channel = postal.channel(options.channel);
-    channel.request({
-      topic: action.topic,
-      data: action.data,
-    })
-    .then(requestPostalMessageSuccess.bind({ action, dispatch }))
-    .catch(requestPostalMessageError.bind({ action, dispatch }));
-  }
+  const channel = postal.channel(options.channel);
+  channel.request({
+    topic: action.topic,
+    data: action.data,
+  })
+  .then(requestPostalMessageSuccess.bind({ action, dispatch }))
+  .catch(requestPostalMessageError.bind({ action, dispatch }));
 
   return;
 }
 
 function requestPostalMessageSuccess(data) {
-  this.dispatch(this.action.completeCallback(data));
+  if (typeof this.action.completeCallback !== 'undefined') {
+    this.dispatch(action.completeCallback(data));
+  }
 }
 
 function requestPostalMessageError(err) {
-  this.dispatch(this.action.completeCallback(err)); // ?
+  if (typeof this.action.completeCallback !== 'undefined') {
+    this.dispatch(this.action.completeCallback(err)); // ?
+  }
 }
 
 /**
