@@ -14,16 +14,14 @@ const STORAGE_TYPE = {
  */
 
 function createStorage() {
-  return dispatch => next => action =>
+  return dispatch => next => action => // eslint-disable-line no-unused-vars
     action.type === EFFECT_STORAGE
       ? execute(action.payload)
       : next(action);
 
-  function execute({ type, storageType, key, value, n }) {
+  function execute({ type, storageType, key, value }) {
     const store = storageType === STORAGE_TYPE.local ? window.localStorage : window.sessionStorage;
     switch (type) {
-      case 'key':
-        return Promise.resolve(store.key(n));
       case 'getItem':
         return Promise.resolve(store.getItem(key)).then(v => parseValue(v));
       case 'setItem':
@@ -64,10 +62,6 @@ function createAction(payload) {
   };
 }
 
-function key(n, storageType = STORAGE_TYPE.local) {
-  return createAction({ type: 'key', storageType, n });
-}
-
 function getItem(key, storageType = STORAGE_TYPE.local) {
   return createAction({ type: 'getItem', storageType, key });
 }
@@ -94,7 +88,6 @@ function getLength(storageType = STORAGE_TYPE.local) {
 
 export default createStorage;
 export {
-  key,
   getItem,
   setItem,
   removeItem,

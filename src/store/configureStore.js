@@ -9,7 +9,9 @@ import createStorage from './redux-storage';
 
 // Messaging setup
 import createPostalMiddleware from '../messaging/postal-include';
-const { postalMiddleware, sagaMiddleware } = createPostalMiddleware({ channel: 'BNAPostalChannel', topic: 'template.*' });
+const { postalMiddleware, sagaMiddleware } = createPostalMiddleware(
+  { channel: 'BNAPostalChannel', topic: 'template.*' }
+);
 
 const reduxStorage = createStorage();
 

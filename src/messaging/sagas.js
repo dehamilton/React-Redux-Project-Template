@@ -1,9 +1,9 @@
 import { takeEvery } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
-import { POSTAL_RECEIVE_MESSAGE } from './postal';
+import { put } from 'redux-saga/effects';
+import { POSTAL_RECEIVE_MESSAGE } from 'redux-postal-middleware';
 // import { getApiCall } from '../apis/index';
 
-function* incrementAsync(getState) {
+function* incrementAsync() {
   // const data = yield call(getApiCall, getState().files);
   yield put({ type: 'INCREMENT', data: {} });
 }

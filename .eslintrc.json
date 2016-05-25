@@ -27,6 +27,12 @@
     "comma-dangle": [2, "always-multiline"]
   },
   "plugins": [
-    "react"
-  ]
+    "react", "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    }
+  }
 }

@@ -1,11 +1,11 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import MainContainer from '../components/container/';
+import MainContainer from '../components/';
 import * as Actions from '../actions';
 
 function mapStateToProps(state) {
   return {
-    
+    state,
   };
 }
 

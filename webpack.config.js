@@ -26,11 +26,15 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
+  eslint: {
+    configFile: './.eslintrc.json'
+  },
   module: {
     loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.(js|jsx)$/, loaders: ['babel', 'eslint-loader'], exclude: /node_modules/ },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}
     ]
-  }
+  },
+  progress: true
 };

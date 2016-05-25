@@ -7,33 +7,34 @@ var fs = require('fs');
 var https = require('https');
 
 var options = {
-      key: fs.readFileSync('./key.pem', 'utf8'),
-      cert: fs.readFileSync('./server.crt', 'utf8')
-   };
+  key: fs.readFileSync('./key.pem', 'utf8'),
+  cert: fs.readFileSync('./server.crt', 'utf8'),
+};
 
 var app = express();
 var compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
+  quiet: true,
+  hot: true,
+  inline: true,
+  lazy: false,
   publicPath: config.output.publicPath,
-  stats: {
-    colors: true
-  }
+  stats: { colors: true },
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(express.static('lib'));
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-https.createServer(options, app).listen(3002, function(err) {
+https.createServer(options, app).listen(3002, (err) => {
   if (err) {
     console.log(err);
     return;
   }
-  
-  console.log('Listening at https://localhost:3002');
+  console.info('==> 🚧  Webpack development server listening https://localhost:3002');
 });

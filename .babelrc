@@ -3,12 +3,15 @@
   "presets": ["es2015", "stage-0", "react"],
   "env": {
     "development": {
-      "plugins": [["react-transform", {
-        "transforms": [{
-          "transform": "react-transform-hmr",
-          "imports": ["react"],
-          "locals": ["module"]
-        }]
+      "plugins": [
+        "typecheck",
+        ["react-transform", {
+          "transforms": [{
+            "transform": "react-transform-hmr",
+            "imports": ["react", "redbox-react"],
+            "locals": ["module"]
+          }
+        ]
       }]]
     }
   }
