@@ -9,7 +9,7 @@
 //webpack production build script
 {
 	"version": "0.1.0",
-	"command": "build.bat",
+	"command": ".vscode\\build.bat",
 	"isShellCommand": true,
 	"args": [
 		

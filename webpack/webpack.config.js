@@ -2,14 +2,14 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'inline-source-map',
   entry: [
     'webpack-hot-middleware/client',
     'babel-polyfill',
     './src/index',
   ],
   output: {
-    path: path.join(__dirname, './build/bundle.js'),
+    path: path.join(__dirname, '../build/'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
@@ -21,7 +21,8 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       'axios': 'axios'
-    })
+    }),
+    new webpack.IgnorePlugin(/regenerator|nodent|js-beautify/, /ajv/)
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']
@@ -31,6 +32,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.(js|jsx)$/, loaders: ['babel', 'eslint-loader'], exclude: /node_modules/ },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}
