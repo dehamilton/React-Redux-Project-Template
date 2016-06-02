@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const reducers = handleActions({
-  [MODULE_INITIALIZED]: (state) => Object.assign({}, state),
+  [MODULE_INITIALIZED]: (state) => ({ ...state }),
 }, initialState);
 
 export default reducers;
