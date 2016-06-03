@@ -22,7 +22,7 @@ const createStoreWithMiddleware = applyMiddleware(
 /**
  * Creates a preconfigured store.
  */
-export function configureStore(initialState) {
+export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
 
   return store;
