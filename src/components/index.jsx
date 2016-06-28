@@ -15,7 +15,7 @@ export default class MainContainer extends Component {
   render() {
     return (
       <div>
-        template running now
+        template running
       </div>
     );
   }

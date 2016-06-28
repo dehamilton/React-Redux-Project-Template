@@ -10,7 +10,7 @@ module.exports = {
     './src/index'
   ],
   output: {
-    path: path.join(__dirname, './build/bundle.js'),
+    path: path.join(__dirname, '../build/'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -28,13 +28,15 @@ module.exports = {
     }),
     new webpack.ProvidePlugin({
       'axios': 'axios'
-    })
+    }),
+    new webpack.IgnorePlugin(/regenerator|nodent|js-beautify/, /ajv/)
   ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
   module: {
     loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.(js|jsx)$/, loaders: ['babel'], exclude: /node_modules/ },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}

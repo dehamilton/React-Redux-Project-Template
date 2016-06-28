@@ -1,14 +1,14 @@
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
-var config = require('./webpack.config');
+var config = require('../webpack/webpack.config');
 
 var fs = require('fs');
 var https = require('https');
 
 var options = {
-  key: fs.readFileSync('./key.pem', 'utf8'),
-  cert: fs.readFileSync('./server.crt', 'utf8'),
+  key: fs.readFileSync('./server/key.pem', 'utf8'),
+  cert: fs.readFileSync('./server/server.crt', 'utf8'),
 };
 
 var app = express();
@@ -28,7 +28,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 app.use(express.static('lib'));
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
 
 https.createServer(options, app).listen(3002, (err) => {
