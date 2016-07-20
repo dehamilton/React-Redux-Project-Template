@@ -13,7 +13,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
-  if (error.data && typeof error.data.Licensed) {
+  if (error.data && typeof error.data.Licensed !== 'undefined') {
     if (!error.data.Licensed) {
       window.location = '/Error/LicenseNotFound';
     } else if (!error.data.Session) {
@@ -23,4 +23,4 @@ axios.interceptors.response.use(function (response) {
 
   return Promise.reject(error);
 });
-/* eslint-endable */
+/* eslint-enable */
