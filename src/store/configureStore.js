@@ -7,14 +7,5 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default function configureStore(initialState) {
-  if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
-    const store = configStore(initialState);
-
-    module.hot.accept('../reducers', () => {
-      store.replaceReducer(require('../reducers/index').default);
-    });
-    return store;
-  }
-
   return configStore(initialState);
 }

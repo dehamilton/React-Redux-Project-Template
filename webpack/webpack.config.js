@@ -25,7 +25,8 @@ module.exports = {
     new webpack.IgnorePlugin(/regenerator|nodent|js-beautify/, /ajv/)
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules', 'src'],
   },
   eslint: {
     configFile: './.eslintrc.json'

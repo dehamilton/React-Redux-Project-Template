@@ -32,12 +32,14 @@ module.exports = {
     new webpack.IgnorePlugin(/regenerator|nodent|js-beautify/, /ajv/)
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    modulesDirectories: ['node_modules', 'src'],
   },
   module: {
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
       { test: /\.(js|jsx)$/, loaders: ['babel'], exclude: /node_modules/ },
+      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}
     ]
