@@ -5,6 +5,10 @@ axios.interceptors.request.use(config => {
   if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
     config.withCredentials = true;
   }
+  config.headers = {
+    'X-Accept-JSON': '1.1',
+    'Content-Type': 'application/json',
+  };
   
   return config;
 });

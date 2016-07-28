@@ -26,6 +26,7 @@ module.exports = {
         warnings: false
       }
     }),
+    new webpack.optimize.DedupePlugin(),
     new webpack.ProvidePlugin({
       'axios': 'axios'
     }),
