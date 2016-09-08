@@ -1,0 +1,5 @@
+--colors
+--require test/_setup.js
+--require babel-polyfill
+--webpack-config webpack/webpack.config-test.js
+test/**/*-test.js
