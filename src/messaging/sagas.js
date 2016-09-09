@@ -8,6 +8,7 @@ function* incrementAsync() {
   yield put({ type: 'INCREMENT', data: {} });
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export function* watchPostalReceiveMessage(getState) {
   yield* takeEvery(POSTAL_RECEIVE_MESSAGE, incrementAsync, getState);
 }

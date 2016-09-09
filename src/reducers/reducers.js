@@ -1,7 +1,7 @@
 /* global __DEVTOOLS__ */
 
-import { MODULE_INITIALIZED } from '../constants/actionConstants';
 import { handleActions } from 'redux-actions';
+import { MODULE_INITIALIZED } from '../constants/actionConstants';
 
 const initialState = {
   schemaTest: [],

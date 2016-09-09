@@ -1,5 +1,5 @@
-import * as actionConstants from '../constants/actionConstants';
 import { createAction } from 'redux-actions';
+import * as actionConstants from '../constants/actionConstants';
 
 export const initModule = createAction(actionConstants.MODULE_INITIALIZED);
 

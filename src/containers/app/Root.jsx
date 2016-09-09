@@ -5,12 +5,12 @@ import { Router, PropTypes as RouterPropTypes } from 'react-router';
 import configureStore from '../../store/configureStore';
 import routes from '../../routes';
 
-
 const store = configureStore();
 
-
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
+  // eslint-disable-next-line global-require
   const createDevToolsWindow = require('../../utils/createDevToolsWindow').default;
+
   createDevToolsWindow(store);
 }
 

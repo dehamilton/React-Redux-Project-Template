@@ -8,7 +8,8 @@
   "ecmaFeatures": {
     "experimentalObjectRestSpread": true,
     "destructuring": true,
-    "spread": true
+    "spread": true,
+    "jsx": true
   },
   "rules": {
     "react/jsx-uses-react": 2,
@@ -24,7 +25,9 @@
     "prefer-template": 0,
     "vars-on-top": 0,
     "strict": 0,
-    "comma-dangle": [2, "always-multiline"]
+    "comma-dangle": [2, "always-multiline"],
+    "linebreak-style": 0,
+    "class-methods-use-this": 0
   },
   "plugins": [
     "react", "import"

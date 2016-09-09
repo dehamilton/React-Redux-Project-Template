@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './containers/app/Root';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
+import Root from './containers/app/Root';
 
 require('./utils/axios');
 

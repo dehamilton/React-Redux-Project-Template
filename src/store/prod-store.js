@@ -8,6 +8,7 @@ import rootReducer from '../reducers';
 // Messaging setup
 import { CHANNEL, TOPIC } from '../constants/messageConstants';
 import createPostalMiddleware from '../messaging/postal-include';
+
 const { postalMiddleware, sagaMiddleware } = createPostalMiddleware(
   { channel: CHANNEL, topic: `${TOPIC}.*` }
 );
