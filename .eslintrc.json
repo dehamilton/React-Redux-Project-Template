@@ -16,6 +16,8 @@
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
     "react/prefer-stateless-function": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-filename-extension": 0,
     "max-len": [2, {"code": 120, "ignoreUrls": true}],
     "no-param-reassign": [2, {"props": false}],
     "no-use-before-define": [2, {"functions": false, "classes": true}],
@@ -27,15 +29,18 @@
     "strict": 0,
     "comma-dangle": [2, "always-multiline"],
     "linebreak-style": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "import/no-extraneous-dependencies": 0,
+    "no-underscore-dangle": 0,
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
   "plugins": [
     "react", "import"
   ],
   "settings": {
     "import/parser": "babel-eslint",
-    "import/resolve": {
-      "moduleDirectory": ["node_modules", "src"]
+    "import/resolver": {
+      "webpack": { "config": "webpack/webpack.config.js" }
     }
   }
 }
