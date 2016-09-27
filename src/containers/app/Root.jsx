@@ -1,7 +1,7 @@
 /* global __DEVTOOLS__ */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
-import { Router, PropTypes as RouterPropTypes } from 'react-router';
+import { Router } from 'react-router';
 import configureStore from '../../store/configureStore';
 import routes from '../../routes';
 
@@ -18,7 +18,7 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
 export default class Root extends Component {
 
   static propTypes = {
-    history: RouterPropTypes.history.isRequired,
+    history: PropTypes.any,
   };
 
   render() {

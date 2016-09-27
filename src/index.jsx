@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import createMemoryHistory from 'history/lib/createMemoryHistory';
+import { createMemoryHistory } from 'history';
+import { useRouterHistory } from 'react-router';
 import Root from './containers/app/Root';
 
 require('./utils/axios');
 
-const history = createMemoryHistory();
+const appHistory = useRouterHistory(createMemoryHistory)();
 
 ReactDOM.render(
-  <Root history={history} />,
+  <Root history={appHistory} />,
   document.getElementById('root')
 );
 
