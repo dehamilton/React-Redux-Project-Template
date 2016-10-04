@@ -1,0 +1,203 @@
+// /*************** Virtualized grid styles ****************************/
+// not sure the subheader classes are used
+.bbna-table-grid .subheader-row {
+  background-color: #d6d6d6!important;
+}
+
+.bbna-table-grid .subheader-row:hover {
+  background-color: #d6d6d6!important;
+}
+
+.bbna-table-grid .FlexTable__headerColumn {
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.bbna-table-grid .selectedRow {
+  background-color: #d9edf7!important;
+}
+
+.bbna-table-grid .fa-folder {
+    color: #f7cb79;
+}
+
+.bbna-table-grid .col-header {
+  background-color: #666 !important;
+  color: white  !important;
+  background-image: none  !important;
+}
+
+.bbna-table-grid .Grid.FlexTable__Grid {
+  -webkit-box-shadow: inset 0px 0px 0px 1px #ddd;
+  -moz-box-shadow: inset 0px 0px 0px 1px #ddd;
+  box-shadow: inset 0px 0px 0px 1px #ddd;
+  overflow: auto !important;  
+  overflow-x: hidden !important;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+
+// /* main grid styles */
+.bbna-table-grid .FlexTable__headerRow {
+    border-top: 1px solid #ddd;
+    background: #666;
+    color: #fff;
+}
+
+.bbna-table-grid .grid {
+    overflow: auto !important;
+    overflow-x: hidden !important;
+}
+
+.bbna-table-grid .headerColumn, .bbna-table-grid .bbna-cell {
+    border-right: 1px solid #ddd;
+    padding: 5px 0px;
+    margin: 0px;
+    min-height: 35px;
+}
+
+.bbna-table-grid .bbna-cell {
+  padding-left: 0px;
+}
+
+.bbna-table-grid .bbna-cell a {
+    cursor: pointer;
+}
+
+.bbna-table-grid .headerColumn {
+    margin-right: 0px;
+    text-transform: none;
+}
+
+.bbna-table-grid .headerColumn div, .bbna-table-grid .bbna-cell div {
+    padding: 0px 9px;   
+}
+
+.bbna-table-grid .headerColumn:first-child, .bbna-table-grid .bbna-cell:first-child {
+    border-left: 1px solid #ddd;   
+}
+
+.bbna-table-grid .FlexTable__rowColumn {
+  margin: 0px;    
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bbna-table-grid .bbna-checkbox .FlexTable__truncatedColumnText {
+  overflow: visible;
+}
+
+.bbna-table-grid a.col-header {
+  cursor: pointer;
+  padding-right: 100px;
+}
+
+.bbna-table-grid .col-header span:nth-child(3) {
+  display: none;
+}
+
+/*******************************/
+.bbna-table-grid .headerColumn:first-of-type, .bbna-table-grid .bbna-cell:first-of-type {
+    margin-left: 0;
+}
+
+.bbna-table-grid .headerColumn a {
+    padding: 0px 10px;   
+}
+
+.bbna-table-grid .headerColumn.bbna-checkbox {
+  padding-left: 5px;
+}
+
+.bbna-table-grid .bbna-cell.bbna-checkbox {
+  padding-left: 5px;
+}
+// /*******************************/
+
+.bbna-table-grid .headerColumn:last-child {
+    border-right: 0px;
+}
+
+.bbna-table-grid .Grid__cell {
+    border-bottom: 1px solid #ddd;
+}
+
+.bbna-table-grid .Grid__cell:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.bbna-table-grid .bbna-cell .fa {
+    margin-right: 5px;
+    width: 15px;
+}
+
+// /*these styles should be added to the toolkit*/
+.bbna-table-grid .bbna-th {
+    text-align: center;
+}
+.bbna-table-grid .bbna-th.bbna-checkbox {
+  padding-right: 5px !important;
+}
+
+// // adding .bbna-table-grid to these .bbna-th.bbna-checkbox styles messes everything up
+.bbna-th.bbna-checkbox input[type="checkbox"] + i {
+  background-color: #ffffff;
+  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  padding: 4px;
+}
+.bbna-th.bbna-checkbox input[type="checkbox"] + i::before {
+  content: none;
+}
+.bbna-th.bbna-checkbox input[type="checkbox"]:focus + i {
+  outline-offset: 0;
+  outline-color: #ffffff;
+  outline-color: -webkit-focus-ring-color;
+}
+.bbna-th.bbna-checkbox input[type="checkbox"]:checked + i {
+  background-color: transparent;
+  color: #ffffff;
+  width: auto;
+  padding: 0;
+}
+.bbna-th.bbna-checkbox input[type="checkbox"]:indeterminate + i span {
+  height: 100%;
+  background-color: #333333;
+  display: block;
+}
+
+// /* these checkbox styles should be part of the next UXtoolkit release. If so, they can be removed from here*/
+.bbna-table-grid .bbna-checkbox {
+  text-align: center;
+  min-width: 50px;
+}
+.bbna-table-grid .bbna-checkbox > label {
+  display: inline;
+  margin: auto;
+}
+
+.bbna-checkbox input[type="checkbox"] + i {
+  cursor: default;
+  font-size: 16.8px;
+  color: #333333;
+}
+.bbna-checkbox input[type="checkbox"] + i::before {
+  content: "\f096";
+}
+.bbna-checkbox input[type="checkbox"]:checked + i::before {
+  content: "\f00c";
+}
+.bbna-checkbox input[type="checkbox"]:focus + i {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}

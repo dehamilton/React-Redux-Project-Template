@@ -1,0 +1,47 @@
+body {
+  -ms-user-select: none;
+}
+
+.current-module .fa.fa-square-o,
+.current-module .fa.fa-check {
+  cursor: pointer;
+}
+
+.current-module .table-cell a {
+  cursor: pointer;
+}
+
+.bbna-table-grid .bbna-cell .table-cell{
+    width: 100%;
+    display: flex;
+    padding: 0px 9px;
+    height: 100%;
+    align-items: center;
+}
+
+/*************** Virtualized grid styles ****************************/
+.FlexTable {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.alert {
+    margin: 10px 0px 0px 0px;
+}
+
+/*.bbna-table-grid .Grid.FlexTable__Grid {
+  min-height: 455px;
+}*/
+
+div:focus,
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+.bbnaTableContainer {
+  order: 1;
+  flex: 3 0px;
+}
