@@ -50,6 +50,10 @@
   display: table !important;
 }
 
+.bbna-table-grid .FlexTable__row:hover {
+  background-color: #f5f5f5;
+}
+
 .bbna-table-grid .FlexTable__headerRow {
     border-top: 1px solid #ddd;
     background: #666;
@@ -134,6 +138,12 @@
 .bbna-table-grid a.col-header {
   cursor: pointer;
   padding-right: 100px;
+  width: 100%;
+
+  .FlexTable__sortableHeaderIcon {
+    height: 1.7em;
+    width: 2em;
+  }
 }
 
 .bbna-table-grid a.col-header:hover {
