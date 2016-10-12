@@ -37,18 +37,24 @@
   -moz-box-shadow: inset 0px 0px 0px 1px #ddd;
   box-shadow: inset 0px 0px 0px 1px #ddd;
   overflow: auto !important;  
-  overflow-x: hidden !important;
+  overflow-x: hidden !important;  
   user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
+  border-bottom: solid 1px #ddd;
 }
 
 // /* main grid styles */
+.bbna-table-grid {
+  display: table !important;
+}
+
 .bbna-table-grid .FlexTable__headerRow {
     border-top: 1px solid #ddd;
     background: #666;
     color: #fff;
+    min-height: 40px !important;
 }
 
 .bbna-table-grid .grid {
@@ -58,9 +64,9 @@
 
 .bbna-table-grid .headerColumn, .bbna-table-grid .bbna-cell {
     border-right: 1px solid #ddd;
-    padding: 5px 0px;
     margin: 0px;
     min-height: 35px;
+    text-transform: none;
 }
 
 .bbna-table-grid .bbna-cell {
@@ -71,9 +77,39 @@
     cursor: pointer;
 }
 
+.bbna-table-grid .table-cell a {
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bbna-table-grid .bbna-cell .table-cell{
+    width: 100%;
+    display: flex;
+    padding: 0px 9px;
+    height: 100%;
+    align-items: center;
+}
+
+.bbna-table-grid .table-cell-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .bbna-table-grid .headerColumn {
     margin-right: 0px;
+    min-height: 40px;
+    padding: 0px;
     text-transform: none;
+}
+
+.bbna-table-grid .headerColumn div {
+    line-height:30px;
+    padding: 0px 10px;
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .bbna-table-grid .headerColumn div, .bbna-table-grid .bbna-cell div {
@@ -100,6 +136,11 @@
   padding-right: 100px;
 }
 
+.bbna-table-grid a.col-header:hover {
+  background-color:#8c8c8c !important;
+  text-decoration: none;
+}
+
 .bbna-table-grid .col-header span:nth-child(3) {
   display: none;
 }
@@ -110,16 +151,17 @@
 }
 
 .bbna-table-grid .headerColumn a {
-    padding: 0px 10px;   
+  padding: 0px 10px;   
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .bbna-table-grid .headerColumn.bbna-checkbox {
   padding-left: 5px;
 }
 
-.bbna-table-grid .bbna-cell.bbna-checkbox {
-  padding-left: 5px;
-}
 // /*******************************/
 
 .bbna-table-grid .headerColumn:last-child {
@@ -137,6 +179,13 @@
 .bbna-table-grid .bbna-cell .fa {
     margin-right: 5px;
     width: 15px;
+}
+
+.bbna-table-grid .fa.fa-square-o,
+.bbna-table-grid .fa.fa-check,
+.bbna-table-grid .fa.fa-minus-square-o,
+.bbna-table-grid .fa.fa-plus-square-o {
+  cursor: pointer;
 }
 
 // /*these styles should be added to the toolkit*/
@@ -183,6 +232,7 @@
 .bbna-table-grid .bbna-checkbox > label {
   display: inline;
   margin: auto;
+  height: 16px;
 }
 
 .bbna-checkbox input[type="checkbox"] + i {
