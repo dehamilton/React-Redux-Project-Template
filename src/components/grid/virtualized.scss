@@ -36,8 +36,8 @@
   -webkit-box-shadow: inset 0px 0px 0px 1px #ddd;
   -moz-box-shadow: inset 0px 0px 0px 1px #ddd;
   box-shadow: inset 0px 0px 0px 1px #ddd;
-  overflow: auto !important;  
-  overflow-x: hidden !important;  
+  overflow: auto !important;
+  overflow-x: hidden !important;
   user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
@@ -117,15 +117,15 @@
 }
 
 .bbna-table-grid .headerColumn div, .bbna-table-grid .bbna-cell div {
-    padding: 0px 9px;   
+    padding: 0px 9px;
 }
 
 .bbna-table-grid .headerColumn:first-child, .bbna-table-grid .bbna-cell:first-child {
-    border-left: 1px solid #ddd;   
+    border-left: 1px solid #ddd;
 }
 
 .bbna-table-grid .FlexTable__rowColumn {
-  margin: 0px;    
+  margin: 0px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -161,7 +161,7 @@
 }
 
 .bbna-table-grid .headerColumn a {
-  padding: 0px 10px;   
+  padding: 0px 10px;
   height: 40px;
   width: 100%;
   display: flex;
