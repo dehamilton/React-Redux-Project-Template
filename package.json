@@ -87,7 +87,7 @@
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.4",
     "redux-logger": "^2.5.2",
-    "redux-postal-middleware": "^0.0.2",
+    "redux-postal-middleware": "^0.0.3",
     "redux-promise": "^0.5.1",
     "redux-saga": "^0.9.5",
     "redux-state-validator": "^0.0.3",
