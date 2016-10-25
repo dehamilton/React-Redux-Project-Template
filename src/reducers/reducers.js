@@ -27,7 +27,7 @@ const initialState = {
 
 const reducers = handleActions({
   ...gridReducers,
-  [MODULE_INITIALIZED]: (state) => ({ ...state }),
+  [MODULE_INITIALIZED]: state => ({ ...state }),
   [MODULE_LOAD_DATA]: (state, action) => ({ ...state, tableData: action.data }),
 }, initialState);
 
