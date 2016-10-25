@@ -26,7 +26,7 @@ import createValidator from 'redux-state-validator';
 const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['reducers'] });
 
 // small middleware to set window variable with result of state for debugging
-const setWindowState = store => next => action => {
+const setWindowState = store => next => (action) => {
   const result = next(action);
   
   if (!window.stateObject) window.stateObject = {};
