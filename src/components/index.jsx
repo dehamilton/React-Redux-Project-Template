@@ -1,5 +1,14 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as gridActions from './grid/actions';
 import BbnaTable from './grid/index';
+import filterableTableHoc from './grid/FilterableTable';
+import statsTableHoc from './grid/CountableTable';
+
+const FilterableTable = connect(
+  () => ({}),
+  dispatch => bindActionCreators(gridActions, dispatch))(filterableTableHoc(statsTableHoc(BbnaTable, 'above')));
 
 export default class MainContainer extends Component {
   static propTypes = {
@@ -19,18 +28,15 @@ export default class MainContainer extends Component {
   render() {
     const { reducers } = this.props.state;
     return (
-      <div>
-        template running
-        <BbnaTable
-          tableData={reducers.tableData}
-          tableStats={reducers.tableStats}
-          tableSorting={reducers.tableSorting}
-          isLoading={reducers.isLoading}
-          openItemForEdit={() => {}}
-          onAddClick={() => {}}
-          helpLink={''}
-        />
-      </div>
+      <FilterableTable
+        tableData={reducers.tableData}
+        tableStats={reducers.tableStats}
+        tableSorting={reducers.tableSorting}
+        isLoading={reducers.isLoading}
+        openItemForEdit={() => {}}
+        onAddClick={() => {}}
+        helpLink={''}
+      />
     );
   }
 }

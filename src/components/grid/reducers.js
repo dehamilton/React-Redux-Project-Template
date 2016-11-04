@@ -9,14 +9,14 @@ function selectItem(state, action) {
   let selectedItems = [];
   const anItem = _.find(state.tableData, { id: action.itemId });
   const isSelected = anItem.__selected;
+  
   if (action.deselectAll === true) {
     selectedItems = state.tableData.filter(i => i.__selected);
-    const forceSelected = state.tableSelection.latestSelectionType !== '' && selectedItems.length > 1;
+    const forceSelected = state.latestSelectionType !== '' && selectedItems.length > 1;
     allItems = state.tableData.map((item) => { delete item.__selected; return item; });
     anItem.__selected = forceSelected ? true : !!!isSelected;
   } else {
     anItem.__selected = !!!anItem.__selected;
-    selectedItems = state.tableData.filter(i => i.__selected);
     allItems = state.tableData;
   }
 

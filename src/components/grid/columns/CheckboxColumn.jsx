@@ -4,15 +4,29 @@ export default class CheckboxColumn extends Component {
 
   static propTypes = {
     checked: PropTypes.bool.isRequired,
+    clickAction: PropTypes.func.isRequired,
+    cellInfo: PropTypes.object.isRequired,
+    name: PropTypes.string.isRequired,
+  }
+
+  clickAction(e) {
+    this.props.clickAction(e, this.props.cellInfo, false);
   }
   
   render() {
     const { checked } = this.props;
-    const cname = checked ? 'fa-check' : 'fa-square-o';
     return (
-      <span className={'table-cell'}>
-        <i className={'fa fa-lg ' + cname} />
-      </span>
+      <label htmlFor={this.props.name} style={{ display: 'block', height: '100%' }}>
+        <input
+          id={this.props.name}
+          type="checkbox"
+          className="sr-only"
+          checked={checked}
+          value={checked}
+          onChange={e => this.clickAction(e)}
+        />
+        <i className="fa" />
+      </label>
     );
   }
 }
