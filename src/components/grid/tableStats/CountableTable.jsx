@@ -10,7 +10,7 @@ export default function statsTableHoc(ComposedComponent, location) {
 
     render() {
       const { tableStats } = this.props;
-      console.log('location', location);
+      
       return (
         <div>
           <div style={{ backgroundColor: '#666', color: 'white' }}>

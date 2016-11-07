@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as gridActions from './grid/actions';
 import BbnaTable from './grid/index';
-import filterableTableHoc from './grid/FilterableTable';
-import statsTableHoc from './grid/CountableTable';
+import filterableTableHoc from './grid/filter/FilterableTable';
+import statsTableHoc from './grid/tableStats/CountableTable';
 
 const FilterableTable = connect(
   () => ({}),

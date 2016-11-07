@@ -10,7 +10,7 @@ import ItemDateTimeColumn from './columns/ItemDateTimeColumn';
 import IndeterminateCheckBoxHeader from './headers/IndeterminateCheckBoxHeader';
 import SortableHeader from './headers/SortableHeader';
 import EmptyStateView from './emptyStateView/EmptyStateView';
-import filterableCell from './FilterableCell';
+import filterableCell from './filter/FilterableCell';
 
 require('./virtualized.scss');
 require('./grid.css');
@@ -31,8 +31,6 @@ export default class BbnaTable extends Component {
 
   constructor(props) {
     super(props);
-
-    this.state = { nameFilter: '', dateFilter: '' };
    
     this.rowClassName = this.rowClassName.bind(this);
     this.checkboxHeaderRenderer = this.checkboxHeaderRenderer.bind(this);
@@ -42,7 +40,6 @@ export default class BbnaTable extends Component {
     this.idCellRenderer = this.idCellRenderer.bind(this);
     this.dateCellRenderer = this.dateCellRenderer.bind(this);
     this.onCellClick = this.onCellClick.bind(this);
-    this.onFilter = this.onFilter.bind(this);
   }
 
   onCellClick(e, cellInfo, deselectAll = true) {
@@ -52,10 +49,6 @@ export default class BbnaTable extends Component {
     } else {
       this.props.itemSelected(cellInfo.rowData.id, deselectAll, cellInfo.rowIndex, '');
     }
-  }
-
-  onFilter(e, target) {
-    this.setState({ [target]: e.target.value });
   }
 
   noRowsRenderer() {
@@ -86,7 +79,7 @@ export default class BbnaTable extends Component {
     );
   }
 
-  @filterableCell
+  @filterableCell.bind({ filterProperty: 'name' })
   nameCellRenderer(cellInfo) {
     const { openItemForEdit } = this.props;
 
@@ -101,7 +94,7 @@ export default class BbnaTable extends Component {
     );
   }
 
-  @filterableCell
+  @filterableCell.bind({ filterProperty: 'lastEditedUtc', filterType: 'date' })
   dateCellRenderer(cellInfo) {
     return (
       <span className="table-cell" onClick={e => this.onCellClick(e, cellInfo)}>
@@ -172,7 +165,7 @@ export default class BbnaTable extends Component {
               />
               <FlexColumn
                 headerRenderer={this.sortableHeaderRenderer}
-                cellRenderer={cellInfo => this.nameCellRenderer(cellInfo, 'nameFilter', this.onFilter)}
+                cellRenderer={this.nameCellRenderer}
                 label="Name"
                 dataKey="name"
                 width={400}
@@ -181,7 +174,7 @@ export default class BbnaTable extends Component {
               />
               <FlexColumn
                 headerRenderer={this.sortableHeaderRenderer}
-                cellRenderer={cellInfo => this.dateCellRenderer(cellInfo, 'dateFilter', this.onFilter)}
+                cellRenderer={this.dateCellRenderer}
                 label="Modified"
                 dataKey="lastEditedUtc"
                 width={200}
