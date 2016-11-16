@@ -5,7 +5,7 @@
   "main": "src/index.jsx",
   "license": "MIT",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node webpack/localhost/server.js",
     "lint": "eslint -c .eslintrc.json --ext .js --ext .jsx src/",
     "check": "npm run lint ",
     "test": "set NODE_ENV=testing && mocha-webpack --opts test/mocha-webpack.opts --growl",
