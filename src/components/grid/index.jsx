@@ -1,25 +1,20 @@
-/* eslint-disable */
+/* global _ */
 
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
 import classNames from 'classnames';
 import 'react-virtualized/styles.css';
-import * as gridActions from './actions';
 import CheckBoxColumn from './columns/CheckboxColumn';
 import ClickableColumn from './columns/ClickableColumn';
 import ItemDateTimeColumn from './columns/ItemDateTimeColumn';
 import IndeterminateCheckBoxHeader from './headers/IndeterminateCheckBoxHeader';
 import SortableHeader from './headers/SortableHeader';
 import EmptyStateView from './emptyStateView/EmptyStateView';
+import filterableCell from './filter/FilterableCell';
 
 require('./virtualized.scss');
 require('./grid.css');
 
-@connect(() => ({}),
-  dispatch => bindActionCreators(gridActions, dispatch)
-)
 export default class BbnaTable extends Component {
   static propTypes = {
     tableData: PropTypes.array.isRequired,
@@ -44,14 +39,15 @@ export default class BbnaTable extends Component {
     this.nameCellRenderer = this.nameCellRenderer.bind(this);
     this.idCellRenderer = this.idCellRenderer.bind(this);
     this.dateCellRenderer = this.dateCellRenderer.bind(this);
+    this.onCellClick = this.onCellClick.bind(this);
   }
 
-  onCellClick(e, cellInfo) {
+  onCellClick(e, cellInfo, deselectAll = true) {
     if (typeof e !== 'undefined' && (e.ctrlKey === true || e.shiftKey === true)) {
       const pressedKey = e.ctrlKey === true ? 'ctrlKey' : 'shiftKey';
       this.props.itemSelected(cellInfo.rowData.id, false, cellInfo.rowIndex, pressedKey);
     } else {
-      this.props.itemSelected(cellInfo.rowData.id, true, cellInfo.rowIndex, '');
+      this.props.itemSelected(cellInfo.rowData.id, deselectAll, cellInfo.rowIndex, '');
     }
   }
 
@@ -69,17 +65,21 @@ export default class BbnaTable extends Component {
   }
 
   idCellRenderer(cellInfo) {
+    if (cellInfo.rowData.__filter) {
+      return ('');
+    }
+
     return (
-      <span className="table-cell" onClick={e => this.onCellClick(e, cellInfo)}>
-        <CheckBoxColumn
-          dataRow={cellInfo.rowData}
-          name={'chk_' + cellInfo.rowData.id}
-          checked={!!cellInfo.rowData.__selected}
-        />
-      </span>
+      <CheckBoxColumn
+        clickAction={this.onCellClick}
+        name={'chk_' + cellInfo.rowData.id}
+        checked={!!cellInfo.rowData.__selected}
+        cellInfo={cellInfo}
+      />
     );
   }
 
+  @filterableCell.bind({ filterProperty: 'name' })
   nameCellRenderer(cellInfo) {
     const { openItemForEdit } = this.props;
 
@@ -94,6 +94,7 @@ export default class BbnaTable extends Component {
     );
   }
 
+  @filterableCell.bind({ filterProperty: 'lastEditedUtc', filterType: 'date' })
   dateCellRenderer(cellInfo) {
     return (
       <span className="table-cell" onClick={e => this.onCellClick(e, cellInfo)}>
@@ -135,12 +136,11 @@ export default class BbnaTable extends Component {
 
   render() {
     const [gridHeight, headerHeight, overscanRowsCount, rowHeight] = [300, 30, 50, 35];
-    const { tableData } = this.props;
-    const rowGetter = ({ index }) => tableData[index];
+    const rowGetter = ({ index }) => this.props.tableData[index];
 
     return (
       <div className="bbnaTableContainer">
-        <AutoSizer disableHeight>
+        <AutoSizer>
           {({ width }) => (
             <FlexTable
               className="bbna-table-grid"
@@ -152,34 +152,34 @@ export default class BbnaTable extends Component {
               overscanRowCount={overscanRowsCount}
               rowHeight={rowHeight}
               rowGetter={rowGetter}
-              rowCount={tableData.length}
+              rowCount={this.props.tableData.length}
               width={width}
             >
               <FlexColumn
                 headerRenderer={this.checkboxHeaderRenderer}
+                cellRenderer={this.idCellRenderer}
                 dataKey="id"
                 width={35}
                 className="bbna-cell bbna-checkbox"
                 headerClassName="bbna-th bbna-checkbox bbna-col-min no-sort"
-                cellRenderer={this.idCellRenderer}
               />
               <FlexColumn
                 headerRenderer={this.sortableHeaderRenderer}
+                cellRenderer={this.nameCellRenderer}
                 label="Name"
                 dataKey="name"
                 width={400}
                 className="bbna-cell"
                 flexGrow={1}
-                cellRenderer={this.nameCellRenderer}
               />
               <FlexColumn
                 headerRenderer={this.sortableHeaderRenderer}
+                cellRenderer={this.dateCellRenderer}
                 label="Modified"
                 dataKey="lastEditedUtc"
                 width={200}
                 className="bbna-cell"
                 flexGrow={1}
-                cellRenderer={this.dateCellRenderer}
               />
             </FlexTable>
           ) }
