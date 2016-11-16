@@ -7,7 +7,7 @@ export default class IndeterminateCheckBoxHeader extends Component {
     tableStats: PropTypes.object.isRequired,
     clickAction: PropTypes.func.isRequired,
   }
-  
+
   constructor(props) {
     super(props);
     this.onHeaderClick = this.onHeaderClick.bind(this);
@@ -31,13 +31,14 @@ export default class IndeterminateCheckBoxHeader extends Component {
           ref={(input) => {
             if (input) {
               input.indeterminate = this.props.tableStats.someButNotAllSelected;
-            } }}
+            }
+          }}
         />
-      
+
         <i className="fa" title={tooltipText}>
           <span />
         </i>
       </label>
-      );
+    );
   }
 }
