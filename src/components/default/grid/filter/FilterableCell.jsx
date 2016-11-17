@@ -2,7 +2,7 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as filterActions from './actions';
+import * as filterActions from './actions/actions';
 
 /*
   Decorator for BbnaTable cell renderers

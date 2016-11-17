@@ -7,8 +7,8 @@ import createLogger from 'redux-logger';
 import rootReducer from 'reducers';
 
 // Messaging setup
-import { CHANNEL, TOPIC } from '../constants/messageConstants';
-import createPostalMiddleware from '../messaging/postal-include';
+import { CHANNEL, TOPIC } from 'constants/messageConstants';
+import createPostalMiddleware from 'messaging/postal-include';
 
 const { postalMiddleware, sagaMiddleware } = createPostalMiddleware(
   { channel: CHANNEL, topic: `${TOPIC}.*` }
@@ -20,7 +20,7 @@ const loggerMiddleware = createLogger({
 });
 
 /* eslint-disable import/imports-first */
-import { applicationStateSchema } from './state-schema';
+import { applicationStateSchema } from 'reducers/state-schema';
 import createValidator from 'redux-state-validator';
 /* eslint-enable import/imports-first */
 const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['reducers'] });
@@ -35,7 +35,7 @@ const setWindowState = store => next => (action) => {
   return result;
 };
 
-const DevTools = require('../containers/app/DevTools').default;
+const DevTools = require('../DevTools').default;
 const { persistState } = require('redux-devtools');
 
 const createStoreWithMiddleware = compose(
@@ -66,9 +66,9 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
+    module.hot.accept('../../reducers', () => {
       // eslint-disable-next-line global-require
-      store.replaceReducer(require('../reducers/index').default);
+      store.replaceReducer(require('../../reducers/index').default);
     });
   }
 

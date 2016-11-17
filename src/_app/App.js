@@ -3,7 +3,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// import Main from '../../components/Main';
 
 class Main extends Component {
 

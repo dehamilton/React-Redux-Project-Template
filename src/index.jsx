@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMemoryHistory } from 'history';
 import { useRouterHistory } from 'react-router';
-import Root from './containers/app/Root';
+import Root from './_app/Root';
 
 require('./utils/axios');
 

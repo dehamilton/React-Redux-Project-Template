@@ -2,14 +2,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
-import configureStore from '../../store/configureStore';
-import routes from '../../routes';
+import configureStore from './store/configureStore';
+import routes from '../routes';
 
 const store = configureStore();
 
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
   // eslint-disable-next-line global-require
-  const createDevToolsWindow = require('../../utils/createDevToolsWindow').default;
+  const createDevToolsWindow = require('./createDevToolsWindow').default;
 
   createDevToolsWindow(store);
 }

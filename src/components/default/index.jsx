@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as gridActions from './grid/actions';
+import * as gridActions from './grid/actions/actions';
 import BbnaTable from './grid/index';
 import filterableTableHoc from './grid/filter/FilterableTable';
 import statsTableHoc from './grid/tableStats/CountableTable';
