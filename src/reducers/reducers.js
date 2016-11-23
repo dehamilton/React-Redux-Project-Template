@@ -2,8 +2,8 @@
 
 import { handleActions } from 'redux-actions';
 import { MODULE_INITIALIZED, MODULE_LOAD_DATA } from 'constants/actionConstants';
-import gridReducers from 'components/default/grid/actions/reducers';
 import filterReducers from 'components/default/grid/filter/actions/reducers';
+import { modules } from './modules';
 
 const initialState = {
   isLoading: false,
@@ -28,8 +28,8 @@ const initialState = {
 };
 
 const reducers = handleActions({
-  ...gridReducers,
   ...filterReducers,
+  ...modules,
   [MODULE_INITIALIZED]: state => ({ ...state }),
   [MODULE_LOAD_DATA]: (state, action) => ({ ...state, tableData: action.data, tableDataOriginal: action.data }),
 }, initialState);

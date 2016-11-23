@@ -27,6 +27,7 @@ export default class BbnaTable extends Component {
     isLoading: PropTypes.bool.isRequired,
     onAddClick: PropTypes.func.isRequired,
     helpLink: PropTypes.string.isRequired,
+    deleteItems: PropTypes.func.isRequired,
   }
 
   constructor(props) {
@@ -140,6 +141,7 @@ export default class BbnaTable extends Component {
 
     return (
       <div className="bbnaTableContainer">
+        <button onClick={this.props.deleteItems}>Delete Test</button>
         <AutoSizer>
           {({ width }) => (
             <FlexTable

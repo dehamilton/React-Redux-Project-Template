@@ -9,7 +9,7 @@ const store = configureStore();
 
 if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
   // eslint-disable-next-line global-require
-  const createDevToolsWindow = require('./createDevToolsWindow').default;
+  const createDevToolsWindow = require('./devTools/createDevToolsWindow').default;
 
   createDevToolsWindow(store);
 }

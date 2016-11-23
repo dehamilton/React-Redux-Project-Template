@@ -35,7 +35,7 @@ const setWindowState = store => next => (action) => {
   return result;
 };
 
-const DevTools = require('../DevTools').default;
+const DevTools = require('../devTools/DevTools').default;
 const { persistState } = require('redux-devtools');
 
 const createStoreWithMiddleware = compose(
