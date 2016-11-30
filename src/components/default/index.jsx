@@ -26,13 +26,13 @@ export default class MainContainer extends Component {
   }
   
   render() {
-    const { reducers } = this.props.state;
+    const { changeThisName } = this.props.state;
     return (
       <FilterableTable
-        tableData={reducers.tableData}
-        tableStats={reducers.tableStats}
-        tableSorting={reducers.tableSorting}
-        isLoading={reducers.isLoading}
+        tableData={changeThisName.tableData}
+        tableStats={changeThisName.tableStats}
+        tableSorting={changeThisName.tableSorting}
+        isLoading={changeThisName.isLoading}
         openItemForEdit={() => {}}
         onAddClick={() => {}}
         helpLink={''}

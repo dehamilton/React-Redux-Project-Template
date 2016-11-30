@@ -14,7 +14,7 @@ const changeSortAction = {
   get creator() {
     return (columnKey, direction) => (
       (dispatch, getState) => {
-        const newDirection = getState().reducers.tableSorting.by === columnKey
+        const newDirection = getState().changeThisName.tableSorting.by === columnKey
           ? this.toggleSortingDirection(direction)
           : 'ASC';
         return dispatch(this.action({ by: columnKey, direction: newDirection }));

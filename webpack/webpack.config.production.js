@@ -6,7 +6,7 @@ module.exports = {
   entry: [
     'es5-shim',
     'es5-shim/es5-sham',
-    './src/utils/shims',
+    './src/_utils/shims',
     './src/index'
   ],
   output: {

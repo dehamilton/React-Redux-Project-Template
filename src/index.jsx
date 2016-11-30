@@ -4,7 +4,7 @@ import { createMemoryHistory } from 'history';
 import { useRouterHistory } from 'react-router';
 import Root from './_app/Root';
 
-require('./utils/axios');
+require('./_utils/axios');
 
 const appHistory = useRouterHistory(createMemoryHistory)();
 

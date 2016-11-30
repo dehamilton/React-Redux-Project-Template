@@ -23,7 +23,7 @@ const loggerMiddleware = createLogger({
 import { applicationStateSchema } from 'reducers/state-schema';
 import createValidator from 'redux-state-validator';
 /* eslint-enable import/imports-first */
-const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['reducers'] });
+const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['changeReducerName'] });
 
 // small middleware to set window variable with result of state for debugging
 const setWindowState = store => next => (action) => {

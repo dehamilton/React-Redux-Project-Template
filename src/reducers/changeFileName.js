@@ -27,11 +27,11 @@ const initialState = {
   },
 };
 
-const reducers = handleActions({
+const changeThisName = handleActions({
   ...filterReducers,
   ...modules,
   [MODULE_INITIALIZED]: state => ({ ...state }),
   [MODULE_LOAD_DATA]: (state, action) => ({ ...state, tableData: action.data, tableDataOriginal: action.data }),
 }, initialState);
 
-export default reducers;
+export default changeThisName;

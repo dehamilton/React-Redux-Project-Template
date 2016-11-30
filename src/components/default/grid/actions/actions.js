@@ -10,7 +10,7 @@ export { selectAllAction as toggleSelectAllItems, deleteItems, changeSort };
 
 export function itemSelected(itemId, deselectAll, rowIndex, pressedKey) {
   return (dispatch, getState) => {
-    const state = getState().reducers;
+    const state = getState().changeThisName;
     if (pressedKey !== 'shiftKey' || state.tableSelection.latestIdSelected === '') {
       return dispatch(selectItemAction(itemId, deselectAll, pressedKey));
     }

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
 export const applicationStateSchema = {
-  reducers: {
+  changeReducerName: {
     additionalProperties: false,
     properties: {
       isLoading: { type: 'boolean' },
