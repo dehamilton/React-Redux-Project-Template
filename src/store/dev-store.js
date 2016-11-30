@@ -8,7 +8,7 @@ import rootReducer from 'reducers';
 
 // Messaging setup
 import { CHANNEL, TOPIC } from '../constants/messageConstants';
-import createPostalMiddleware from '../messaging/postal-include';
+import createPostalMiddleware, { rootSaga } from '../messaging/postal-include';
 
 const { postalMiddleware, sagaMiddleware } = createPostalMiddleware(
   { channel: CHANNEL, topic: `${TOPIC}.*` }
@@ -63,7 +63,8 @@ function getDebugSessionKey() {
  */
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
-
+  sagaMiddleware.run(rootSaga);
+  
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
