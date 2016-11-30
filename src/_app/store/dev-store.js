@@ -1,4 +1,4 @@
-/* eslint object-shorthand: 0 */
+/* eslint object-shorthand: 0, import/first: 0 */
 /* global __DEVTOOLS__ */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';

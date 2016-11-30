@@ -24,7 +24,9 @@ export default class Root extends Component {
   render() {
     return (
       <Provider store={store} key="provider">
-        <Router history={this.props.history} children={routes} />
+        <Router history={this.props.history}>
+          {routes}
+        </Router>
       </Provider>
     );
   }
