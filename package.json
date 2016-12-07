@@ -1,6 +1,6 @@
 {
   "name": "react-redux-project-template",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "React Redux Project Template",
   "main": "src/index.jsx",
   "license": "MIT",
