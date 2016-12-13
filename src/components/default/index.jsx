@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import * as gridActions from './grid/actions/actions';
 import BbnaTable from './grid/index';
 import filterableTableHoc from './grid/filter/FilterableTable';
@@ -17,26 +18,28 @@ export default class MainContainer extends Component {
     loadData: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
   }
-  
-  constructor(props) {
-    super(props);
+
+  componentWillMount() {
     this.props.initModule();
     this.props.testTypecheck(true, 'string');
     this.props.loadData();
   }
-  
+
   render() {
     const { changeThisName } = this.props.state;
     return (
-      <FilterableTable
-        tableData={changeThisName.tableData}
-        tableStats={changeThisName.tableStats}
-        tableSorting={changeThisName.tableSorting}
-        isLoading={changeThisName.isLoading}
-        openItemForEdit={() => {}}
-        onAddClick={() => {}}
-        helpLink={''}
-      />
+      <div>
+        <div>See Input Samples, <Link to="/inputs">here</Link>.</div>
+        <FilterableTable
+          tableData={changeThisName.tableData}
+          tableStats={changeThisName.tableStats}
+          tableSorting={changeThisName.tableSorting}
+          isLoading={changeThisName.isLoading}
+          openItemForEdit={() => {}}
+          onAddClick={() => {}}
+          helpLink={''}
+        />
+      </div>
     );
   }
 }

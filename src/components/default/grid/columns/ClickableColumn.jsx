@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default class ClickableColumn extends Component {
   static propTypes = {
@@ -23,11 +24,11 @@ export default class ClickableColumn extends Component {
 
 
   render() {
-    const { text } = this.props;
+    const { text, rowId } = this.props;
 
     return (
       <span>
-        <a onClick={this.handleClick}>{text}</a>
+        <Link to={'/item/' + rowId}>{text}</Link>
       </span>
     );
   }

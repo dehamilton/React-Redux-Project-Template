@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createMemoryHistory } from 'history';
+import { createHashHistory } from 'history';
 import { useRouterHistory } from 'react-router';
 import Root from './_app/Root';
 
 require('./_utils/axios');
 
-const appHistory = useRouterHistory(createMemoryHistory)();
+const appHistory = useRouterHistory(createHashHistory)();
 
 ReactDOM.render(
   <Root history={appHistory} />,

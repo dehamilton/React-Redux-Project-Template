@@ -27,12 +27,11 @@ export default class BbnaTable extends Component {
     isLoading: PropTypes.bool.isRequired,
     onAddClick: PropTypes.func.isRequired,
     helpLink: PropTypes.string.isRequired,
-    deleteItems: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
-   
+
     this.rowClassName = this.rowClassName.bind(this);
     this.checkboxHeaderRenderer = this.checkboxHeaderRenderer.bind(this);
     this.sortableHeaderRenderer = this.sortableHeaderRenderer.bind(this);
@@ -141,7 +140,6 @@ export default class BbnaTable extends Component {
 
     return (
       <div className="bbnaTableContainer">
-        <button onClick={this.props.deleteItems}>Delete Test</button>
         <AutoSizer>
           {({ width }) => (
             <FlexTable
