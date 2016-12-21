@@ -134,12 +134,27 @@ export default class BbnaTable extends Component {
     return classNames({ selectedRow: isRowSelected });
   }
 
+  noRowsDisplay(tableData, onAddClick, helpLink) {
+    if (tableData.length === 1 && tableData[0].__filter) {
+      return (
+        <div style={{ position: 'absolute', top: '110px', left: '40%', zIndex: 2000 }}>
+          <EmptyStateView
+            onAddClick={onAddClick}
+            helpLink={helpLink}
+          />
+        </div>
+      );
+    }
+    return '';
+  }
+
   render() {
     const [gridHeight, headerHeight, overscanRowsCount, rowHeight] = [300, 30, 50, 35];
     const rowGetter = ({ index }) => this.props.tableData[index];
 
     return (
       <div className="bbnaTableContainer">
+        {this.noRowsDisplay(this.props.tableData, this.props.onAddClick, this.props.helpLink)}
         <AutoSizer>
           {({ width }) => (
             <FlexTable

@@ -1,6 +1,4 @@
-/* eslint wrap-iife: 0 */
-/* eslint prefer-rest-params: 0 */
-/* eslint no-cond-assign: 0 */
+/* eslint-disable */
 
 // Polyfills for IE
 // console and Object.assign
