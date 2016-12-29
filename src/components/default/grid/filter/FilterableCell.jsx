@@ -72,7 +72,7 @@ class FilterInput extends Component {
       <input
         id={`search_${this.props.filterName}`}
         type="search"
-        className="bbna-filterinput form-control"
+        className="form-control"
         value={this.state.filter}
         onChange={e => this.filter(e)}
       />

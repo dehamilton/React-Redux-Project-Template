@@ -3,6 +3,7 @@
 import { handleActions } from 'redux-actions';
 import { MODULE_INITIALIZED, MODULE_LOAD_DATA } from 'constants/actionConstants';
 import filterReducers from 'components/default/grid/filter/actions/reducers';
+import tableStatsReducers from 'components/default/grid/tableStats/actions/reducers';
 import gridReducers from 'components/default/grid/actions/reducers';
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
 const changeThisName = handleActions({
   ...gridReducers,
   ...filterReducers,
+  ...tableStatsReducers,
   [MODULE_INITIALIZED]: state => ({ ...state }),
   [MODULE_LOAD_DATA]: (state, action) => ({ ...state, tableData: action.data, tableDataOriginal: action.data }),
 }, initialState);

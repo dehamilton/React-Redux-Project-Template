@@ -9,7 +9,7 @@ import statsTableHoc from './grid/tableStats/CountableTable';
 
 const FilterableTable = connect(
   () => ({}),
-  dispatch => bindActionCreators(gridActions, dispatch))(filterableTableHoc(statsTableHoc(BbnaTable, 'above')));
+  dispatch => bindActionCreators(gridActions, dispatch))(statsTableHoc(filterableTableHoc(BbnaTable), 'above'));
 
 export default class MainContainer extends Component {
   static propTypes = {

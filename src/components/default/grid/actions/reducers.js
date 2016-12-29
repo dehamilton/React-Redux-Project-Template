@@ -9,7 +9,7 @@ function selectItem(state, action) {
   let selectedItems = [];
   const anItem = _.find(state.tableData, { id: action.itemId });
   const isSelected = anItem.__selected;
-  
+
   if (action.deselectAll === true) {
     selectedItems = state.tableData.filter(i => i.__selected);
     const forceSelected = state.latestSelectionType !== '' && selectedItems.length > 1;
@@ -65,6 +65,9 @@ function selectRange(state, action) {
     }
     return item;
   });
+
+  state.tableStats = computeTableStats(items);
+
   return { ...state, tableData: items, tableSelection: { ...state.tableSelection, latestSelectionType: 'range' } };
 }
 

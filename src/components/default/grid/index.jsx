@@ -32,17 +32,11 @@ export default class BbnaTable extends Component {
   constructor(props) {
     super(props);
 
-    this.rowClassName = this.rowClassName.bind(this);
-    this.checkboxHeaderRenderer = this.checkboxHeaderRenderer.bind(this);
-    this.sortableHeaderRenderer = this.sortableHeaderRenderer.bind(this);
-    this.noRowsRenderer = this.noRowsRenderer.bind(this);
     this.nameCellRenderer = this.nameCellRenderer.bind(this);
-    this.idCellRenderer = this.idCellRenderer.bind(this);
     this.dateCellRenderer = this.dateCellRenderer.bind(this);
-    this.onCellClick = this.onCellClick.bind(this);
   }
 
-  onCellClick(e, cellInfo, deselectAll = true) {
+  onCellClick = (e, cellInfo, deselectAll = true) => {
     if (typeof e !== 'undefined' && (e.ctrlKey === true || e.shiftKey === true)) {
       const pressedKey = e.ctrlKey === true ? 'ctrlKey' : 'shiftKey';
       this.props.itemSelected(cellInfo.rowData.id, false, cellInfo.rowIndex, pressedKey);
@@ -51,7 +45,7 @@ export default class BbnaTable extends Component {
     }
   }
 
-  noRowsRenderer() {
+  noRowsRenderer = () => {
     const { isLoading, onAddClick, helpLink } = this.props;
     if (!isLoading) {
       return (
@@ -64,7 +58,7 @@ export default class BbnaTable extends Component {
     return '';
   }
 
-  idCellRenderer(cellInfo) {
+  idCellRenderer = (cellInfo) => {
     if (cellInfo.rowData.__filter) {
       return ('');
     }
@@ -106,16 +100,14 @@ export default class BbnaTable extends Component {
     );
   }
 
-  checkboxHeaderRenderer() {
-    return (
-      <IndeterminateCheckBoxHeader
-        clickAction={this.props.toggleSelectAllItems}
-        tableStats={this.props.tableStats}
-      />
-    );
-  }
+  checkboxHeaderRenderer = () => (
+    <IndeterminateCheckBoxHeader
+      clickAction={this.props.toggleSelectAllItems}
+      tableStats={this.props.tableStats}
+    />
+  );
 
-  sortableHeaderRenderer(rowHeader) {
+  sortableHeaderRenderer = (rowHeader) => {
     const { tableSorting, changeSort } = this.props;
 
     return (
@@ -129,7 +121,7 @@ export default class BbnaTable extends Component {
     );
   }
 
-  rowClassName(rowData) {
+  rowClassName = (rowData) => {
     const isRowSelected = rowData.index >= 0 && this.props.tableData[rowData.index].__selected;
     return classNames({ selectedRow: isRowSelected });
   }
@@ -149,7 +141,7 @@ export default class BbnaTable extends Component {
   }
 
   render() {
-    const [gridHeight, headerHeight, overscanRowsCount, rowHeight] = [300, 30, 50, 35];
+    const [gridHeight, headerHeight, overscanRowsCount, rowHeight] = [300, 30, 50, 31];
     const rowGetter = ({ index }) => this.props.tableData[index];
 
     return (
@@ -174,9 +166,9 @@ export default class BbnaTable extends Component {
                 headerRenderer={this.checkboxHeaderRenderer}
                 cellRenderer={this.idCellRenderer}
                 dataKey="id"
-                width={35}
+                width={31}
                 className="bbna-cell bbna-checkbox"
-                headerClassName="bbna-th bbna-checkbox bbna-col-min no-sort"
+                headerClassName="bbna-checkbox"
               />
               <FlexColumn
                 headerRenderer={this.sortableHeaderRenderer}

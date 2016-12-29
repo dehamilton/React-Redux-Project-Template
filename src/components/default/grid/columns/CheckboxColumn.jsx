@@ -12,11 +12,11 @@ export default class CheckboxColumn extends Component {
   clickAction(e) {
     this.props.clickAction(e, this.props.cellInfo, false);
   }
-  
+
   render() {
     const { checked } = this.props;
     return (
-      <label htmlFor={this.props.name} style={{ display: 'block', height: '100%' }}>
+      <label htmlFor={this.props.name}>
         <input
           id={this.props.name}
           type="checkbox"
