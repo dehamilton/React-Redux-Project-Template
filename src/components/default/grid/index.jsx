@@ -122,6 +122,9 @@ export default class BbnaTable extends Component {
   }
 
   rowClassName = (rowData) => {
+    if (rowData.index === 0 && this.props.tableData[0].__filter) {
+      return 'bbna-filterrow';
+    }
     const isRowSelected = rowData.index >= 0 && this.props.tableData[rowData.index].__selected;
     return classNames({ selectedRow: isRowSelected });
   }
