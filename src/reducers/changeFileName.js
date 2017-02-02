@@ -1,8 +1,9 @@
 /* global __DEVTOOLS__ */
 
 import { handleActions } from 'redux-actions';
-import { MODULE_INITIALIZED, MODULE_LOAD_DATA } from 'constants/actionConstants';
 import filterReducers from 'components/default/grid/filter/actions/reducers';
+import { handleActionsExt } from '_utils/handleActionsExt';
+import { TestActions } from 'actions/export';
 import { modules } from './modules';
 
 const initialState = {
@@ -28,10 +29,9 @@ const initialState = {
 };
 
 const changeThisName = handleActions({
+  ...handleActionsExt(TestActions),
   ...filterReducers,
   ...modules,
-  [MODULE_INITIALIZED]: state => ({ ...state }),
-  [MODULE_LOAD_DATA]: (state, action) => ({ ...state, tableData: action.data, tableDataOriginal: action.data }),
 }, initialState);
 
 export default changeThisName;

@@ -6,6 +6,8 @@ import { register as register1 } from 'components/default/grid/actions/deleteIte
 import { register as register2 } from 'components/default/grid/actions/selectAllAction.js';
 import { register as register3 } from 'components/default/grid/actions/selectItemAction.js';
 import { register as register4 } from 'components/default/grid/actions/selectItemRangeAction.js';
+
+
 const modules = {
   ...register0,
   ...register1,
