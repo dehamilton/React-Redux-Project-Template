@@ -12,6 +12,4 @@
     "dist" : true,
     "tmp" : true
   }
-,
-"vsicons.presets.angular": true
 }
