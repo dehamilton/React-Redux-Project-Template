@@ -31,10 +31,10 @@ export default class MainContainer extends Component {
       <div>
         <div>See Input Samples, <Link to="/inputs">here</Link>.</div>
         <FilterableTable
-          tableData={changeThisName.tableData}
-          tableStats={changeThisName.tableStats}
-          tableSorting={changeThisName.tableSorting}
-          isLoading={changeThisName.isLoading}
+          tableData={changeThisName.get('tableData')}
+          tableStats={changeThisName.get('tableStats')}
+          tableSorting={changeThisName.get('tableSorting')}
+          isLoading={changeThisName.get('isLoading')}
           openItemForEdit={() => {}}
           onAddClick={() => {}}
           helpLink={''}

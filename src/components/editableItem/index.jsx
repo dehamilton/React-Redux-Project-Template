@@ -8,7 +8,7 @@ export default class EditableItem extends Component {
   }
 
   render() {
-    const item = this.props.state.changeThisName.tableData.filter(i => i.id === this.props.params.id);
+    const item = this.props.state.changeThisName.get('tableData').filter(i => i.id === this.props.params.id);
 
     return (
       <div>

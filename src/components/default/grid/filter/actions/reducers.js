@@ -7,21 +7,21 @@ import moment from 'moment';
 
 function filterTableData(state, action) {
   if (action.value.trim() === '') {
-    return { ...state, tableData: state.tableDataOriginal };
+    return state.set('tableData', state.get('tableDataOriginal'));
   }
 
-  let data = state.tableData;
+  let data = state.get('tableData');
   if (action.filterType === 'string') {
-    data = state.tableData.filter(f => f[action.target].toLowerCase().indexOf(action.value.toLowerCase()) > -1);
+    data = state.get('tableData').filter(f => f[action.target].toLowerCase().indexOf(action.value.toLowerCase()) > -1);
   } else if (action.filterType === 'date') {
     // would need to have a complete date, not partial, for true date filtering
-    data = state.tableData.filter((f) => {
+    data = state.get('tableData').filter((f) => {
       const formattedDate = moment(f[action.target]).format('MM/DD/YYYY');
       return formattedDate.indexOf(action.value.toLowerCase()) > -1;
     });
   }
 
-  return { ...state, tableData: data };
+  return state.set('tableData', data);
 }
 
 const filterReducers = {

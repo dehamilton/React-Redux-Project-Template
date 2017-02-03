@@ -7,7 +7,7 @@ import React, { PropTypes } from 'react';
 export default function filterableTableHoc(ComposedComponent) {
   return class TableExtend extends ComposedComponent {
     static propTypes = {
-      tableData: PropTypes.array.isRequired,
+      tableData: PropTypes.any.isRequired,
     };
 
     constructor(props) {
@@ -40,7 +40,7 @@ export default function filterableTableHoc(ComposedComponent) {
     render() {
       // eslint-disable-next-line no-unused-vars
       const { tableData, itemSelected, ...rest } = this.props;
-      
+
       return <ComposedComponent tableData={this.clonedData} itemSelected={this.itemSelected} {...rest} />;
     }
   };

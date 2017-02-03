@@ -17,7 +17,7 @@ require('./grid.css');
 
 export default class BbnaTable extends Component {
   static propTypes = {
-    tableData: PropTypes.array.isRequired,
+    tableData: PropTypes.any.isRequired,
     tableStats: PropTypes.object.isRequired,
     tableSorting: PropTypes.object.isRequired,
     changeSort: PropTypes.func.isRequired,

@@ -2,8 +2,8 @@ import * as actionConstants from 'constants/actionConstants';
 import { computeTableStats } from '../../actions/gridUtils';
 
 function updateTableStats(state) {
-  state.tableStats = computeTableStats(state.tableData);
-  return { ...state };
+  const stats = computeTableStats(state.get('tableData'));
+  return state.set('tableStats', stats);
 }
 
 const tableStatsReducers = {
