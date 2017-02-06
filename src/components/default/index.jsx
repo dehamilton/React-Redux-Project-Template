@@ -31,9 +31,9 @@ export default class MainContainer extends Component {
       <div>
         <div>See Input Samples, <Link to="/inputs">here</Link>.</div>
         <FilterableTable
-          tableData={changeThisName.get('tableData')}
-          tableStats={changeThisName.get('tableStats')}
-          tableSorting={changeThisName.get('tableSorting')}
+          tableData={changeThisName.get('tableData').toJS()}
+          tableStats={changeThisName.get('tableStats').toJS()}
+          tableSorting={changeThisName.get('tableSorting').toJS()}
           isLoading={changeThisName.get('isLoading')}
           openItemForEdit={() => {}}
           onAddClick={() => {}}

@@ -5,19 +5,19 @@ import * as actionConstants from 'constants/actionConstants';
 import { sortBy, computeTableStats } from './gridUtils';
 
 function selectItem(state, action) {
-  let allItems;
+  let allItems = state.get('tableData').toJS();
   let selectedItems = [];
-  const anItem = _.find(state.get('tableData'), { id: action.itemId });
+  const anItem = _.find(allItems, { id: action.itemId });
   const isSelected = anItem.__selected;
 
   if (action.deselectAll === true) {
-    selectedItems = state.get('tableData').filter(i => i.__selected);
+    selectedItems = allItems.filter(i => i.__selected);
     const forceSelected = state.get('tableSelection').latestSelectionType !== '' && selectedItems.length > 1;
-    allItems = state.get('tableData').map((item) => { delete item.__selected; return item; });
+    allItems = allItems.map((item) => { delete item.__selected; return item; });
     anItem.__selected = forceSelected ? true : !!!isSelected;
   } else {
     anItem.__selected = !!!anItem.__selected;
-    allItems = state.get('tableData');
+    // allItems = state.get('tableData');
   }
 
   let latestIdSelected;
@@ -29,13 +29,15 @@ function selectItem(state, action) {
   const latestSelectionType = action.pressedKey !== '' ? 'multiple' : '';
   const stats = computeTableStats(allItems);
 
-  return state.set('tableData', allItems)
-          .set('tableStats', stats)
-          .set('tableSelection', { latestSelectionType, latestIdSelected });
+  return state.merge({
+    tableData: allItems,
+    tableStats: stats,
+    tableSelection: { latestSelectionType, latestIdSelected },
+  });
 }
 
 function toggleAllSelection(state) {
-  const data = state.get('tableData');
+  const data = state.get('tableData').toJS();
   const currentCounters = computeTableStats(data);
   const noneSelected = currentCounters.selected === 0;
   const checkValue = noneSelected || currentCounters.someButNotAllSelected;
@@ -44,24 +46,28 @@ function toggleAllSelection(state) {
     p.__selected = checkValue;
   });
 
-  const tableStats = computeTableStats(data);
+  const stats = computeTableStats(data);
 
   const selection = state.get('tableSelection');
   selection.latestIdSelected = data.length > 0 && data.allSelected ? data[0].id : '';
   selection.latestSelectionType = 'multiple';
 
-  return state.set('tableData', data)
-          .set('tableStats', tableStats)
-          .set('tableSelection', selection);
+  return state.merge({
+    tableData: data,
+    tableStats: stats,
+    tableSelection: selection,
+  });
 }
 
 function changeSorting(state, by, direction) {
-  return state.set('tableData', sortBy(state.get('tableData'), by, direction))
-          .set('tableSorting', { by, direction });
+  return state.merge({
+    tableData: sortBy(state.get('tableData').toJS(), by, direction),
+    tableSorting: { by, direction },
+  });
 }
 
 function selectRange(state, action) {
-  const items = state.get('tableData').map((item, index) => {
+  const items = state.get('tableData').toJS().map((item, index) => {
     delete item.__selected;
     if (index >= action.minIndex && index <= action.maxIndex) {
       item.__selected = true;
@@ -73,9 +79,11 @@ function selectRange(state, action) {
   const selection = state.get('tableSelection');
   selection.latestSelectionType = 'range';
 
-  return state.set('tableData', items)
-          .set('tableStats', stats)
-          .set('tableSelection', selection);
+  return state.merge({
+    tableData: items,
+    tableStats: stats,
+    tableSelection: selection,
+  });
 }
 
 function handleItemsHasBeenRemoved(state) {

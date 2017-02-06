@@ -7,7 +7,7 @@ import moment from 'moment';
 
 function filterTableData(state, action) {
   if (action.value.trim() === '') {
-    return state.set('tableData', state.get('tableDataOriginal'));
+    return state.merge({ tableData: state.get('tableDataOriginal') });
   }
 
   let data = state.get('tableData');
@@ -21,7 +21,7 @@ function filterTableData(state, action) {
     });
   }
 
-  return state.set('tableData', data);
+  return state.merge({ tableData: data });
 }
 
 const filterReducers = {

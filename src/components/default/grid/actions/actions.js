@@ -43,7 +43,10 @@ export function itemSelected(itemId, deselectAll, rowIndex, pressedKey) {
       return dispatch(selectItem(itemId, deselectAll, pressedKey));
     }
 
-    const indexItem = _.findIndex(state.get('tableData'), { id: state.get('tableSelection').latestIdSelected });
+    const indexItem = _.findIndex(
+      state.get('tableData').toJS(),
+      { id: state.getIn(['tableSelection', 'latestIdSelected']) });
+
     const minIndex = rowIndex < indexItem ? rowIndex : indexItem;
     const maxIndex = rowIndex >= indexItem ? rowIndex : indexItem;
     return dispatch(selectItemsRange(minIndex, maxIndex));
@@ -58,7 +61,7 @@ export function toggleSelectAllItems() {
 
 export function changeSort(columnKey, direction) {
   return (dispatch, getState) => {
-    const newDirection = getState().changeThisName.get('tableSorting').by === columnKey
+    const newDirection = getState().changeThisName.getIn(['tableSorting', 'by']) === columnKey
                           ? toggleSortingDirection(direction) : 'ASC';
     return dispatch(changeSortAction({ by: columnKey, direction: newDirection }));
   };

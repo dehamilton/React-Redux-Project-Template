@@ -34,7 +34,8 @@ const changeThisName = handleActions({
   ...filterReducers,
   ...tableStatsReducers,
   [MODULE_INITIALIZED]: state => (state),
-  [MODULE_LOAD_DATA]: (state, action) => (state.set('tableData', action.data).set('tableDataOriginal', action.data)),
+  [MODULE_LOAD_DATA]: (state, action) => (state.merge({ tableData: action.data, tableDataOriginal: action.data })
+  ),
 }, initialState);
 
 export default changeThisName;
