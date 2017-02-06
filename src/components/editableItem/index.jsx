@@ -8,13 +8,13 @@ export default class EditableItem extends Component {
   }
 
   render() {
-    const item = this.props.state.changeThisName.get('tableData').filter(i => i.id === this.props.params.id);
+    const item = this.props.state.changeThisName.get('tableData').filter(i => i.get('id') === this.props.params.id);
 
     return (
       <div>
         <div>Return to <Link to="/">grid</Link>.</div>
         <div>Data</div>
-        <div>{item[0].id}</div>
+        <div>{item.first().get('id')}</div>
       </div>
     );
   }

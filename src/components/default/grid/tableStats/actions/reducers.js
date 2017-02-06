@@ -2,7 +2,7 @@ import * as actionConstants from 'constants/actionConstants';
 import { computeTableStats } from '../../actions/gridUtils';
 
 function updateTableStats(state) {
-  const stats = computeTableStats(state.get('tableData').toJS());
+  const stats = computeTableStats(state.get('tableData'));
   return state.merge({ tableStats: stats });
 }
 

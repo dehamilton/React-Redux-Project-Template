@@ -39,7 +39,7 @@ export function selectItemsRange(minIndex, maxIndex) {
 export function itemSelected(itemId, deselectAll, rowIndex, pressedKey) {
   return (dispatch, getState) => {
     const state = getState().changeThisName;
-    if (pressedKey !== 'shiftKey' || state.get('tableSelection').latestIdSelected === '') {
+    if (pressedKey !== 'shiftKey' || state.getIn(['tableSelection', 'latestIdSelected']) === '') {
       return dispatch(selectItem(itemId, deselectAll, pressedKey));
     }
 
