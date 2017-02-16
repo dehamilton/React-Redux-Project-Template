@@ -23,12 +23,13 @@ export default function statsTableHoc(ComposedComponent, location) {
       const { tableStats } = this.props;
 
       return (
-        <div>
-          <div style={{ backgroundColor: '#666', color: 'white' }}>
+        <div className="stats">
+          { location === 'below' ? <ComposedComponent {...this.props} /> : '' }
+          <div style={{ backgroundColor: '#666', color: 'white', height: '20px', marginTop: '10px' }}>
             <span>Total Items: {tableStats.total}</span>
             <span>Total Selected: {tableStats.selected}</span>
           </div>
-          <ComposedComponent {...this.props} />
+          { location === 'above' ? <ComposedComponent {...this.props} /> : '' }
         </div>
       );
     }

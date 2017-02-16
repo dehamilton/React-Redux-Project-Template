@@ -1,10 +1,11 @@
 /* global _ */
 
 import React, { Component, PropTypes } from 'react';
-import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
+import { FlexTable, FlexColumn } from 'react-virtualized';
 import classNames from 'classnames';
 import 'react-virtualized/styles.css';
 import CheckBoxColumn from './columns/CheckboxColumn';
+
 import ClickableColumn from './columns/ClickableColumn';
 import ItemDateTimeColumn from './columns/ItemDateTimeColumn';
 import IndeterminateCheckBoxHeader from './headers/IndeterminateCheckBoxHeader';
@@ -12,11 +13,13 @@ import SortableHeader from './headers/SortableHeader';
 import EmptyStateView from './emptyStateView/EmptyStateView';
 import filterableCell from './filter/FilterableCell';
 
-require('./virtualized.scss');
+// require('./virtualized.scss');
 require('./grid.css');
 
 export default class BbnaTable extends Component {
   static propTypes = {
+    width: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
     tableData: PropTypes.any.isRequired,
     tableStats: PropTypes.object.isRequired,
     tableSorting: PropTypes.object.isRequired,
@@ -32,6 +35,7 @@ export default class BbnaTable extends Component {
   constructor(props) {
     super(props);
 
+    this.idCellRenderer = this.idCellRenderer.bind(this);
     this.nameCellRenderer = this.nameCellRenderer.bind(this);
     this.dateCellRenderer = this.dateCellRenderer.bind(this);
   }
@@ -43,6 +47,23 @@ export default class BbnaTable extends Component {
     } else {
       this.props.itemSelected(cellInfo.rowData.id, deselectAll, cellInfo.rowIndex, '');
     }
+  }
+
+  getRowHeight = ({ index }) => {
+    if (index === 0 && this.props.tableData[0].__filter) {
+      return 45;
+    }
+    return 31;
+  }
+
+  getTableHeight = (height) => {
+    if (this.props.tableData.length === 1 && this.props.tableData[0].__filter) {
+      return 300;
+    } else if (height > ((this.props.tableData.length * 35) + 45)) {
+      return (this.props.tableData.length * 31) + 45;
+    }
+
+    return height - 45; // leave a little space at bottom to prevent flickering
   }
 
   noRowsRenderer = () => {
@@ -58,11 +79,8 @@ export default class BbnaTable extends Component {
     return '';
   }
 
-  idCellRenderer = (cellInfo) => {
-    if (cellInfo.rowData.__filter) {
-      return ('');
-    }
-
+  @filterableCell.bind({ filterProperty: 'id', filterType: 'clear' })
+  idCellRenderer(cellInfo) {
     return (
       <CheckBoxColumn
         clickAction={this.onCellClick}
@@ -73,30 +91,30 @@ export default class BbnaTable extends Component {
     );
   }
 
-  @filterableCell.bind({ filterProperty: 'name' })
+  @filterableCell.bind({ filterProperty: 'name', filterType: 'text' })
   nameCellRenderer(cellInfo) {
     const { openItemForEdit } = this.props;
 
     return (
-      <span className="table-cell" onClick={e => this.onCellClick(e, cellInfo)}>
+      <div onClick={e => this.onCellClick(e, cellInfo)}>
         <ClickableColumn
           rowId={cellInfo.rowData.id}
           text={cellInfo.rowData.name}
           onClick={openItemForEdit}
         />
-      </span>
+      </div>
     );
   }
 
   @filterableCell.bind({ filterProperty: 'lastEditedUtc', filterType: 'date' })
   dateCellRenderer(cellInfo) {
     return (
-      <span className="table-cell" onClick={e => this.onCellClick(e, cellInfo)}>
+      <div className="bbna-col-date" onClick={e => this.onCellClick(e, cellInfo)}>
         <ItemDateTimeColumn
           date={cellInfo.rowData.lastEditedUtc}
           format={'MM/DD/YYYY'}
         />
-      </span>
+      </div>
     );
   }
 
@@ -116,7 +134,7 @@ export default class BbnaTable extends Component {
         label={rowHeader.label}
         sorting={tableSorting}
         onSortChanged={changeSort}
-        className="col-header"
+        className="bbna-col-header"
       />
     );
   }
@@ -126,13 +144,13 @@ export default class BbnaTable extends Component {
       return 'bbna-filterrow';
     }
     const isRowSelected = rowData.index >= 0 && this.props.tableData[rowData.index].__selected;
-    return classNames({ selectedRow: isRowSelected });
+    return classNames({ 'bbna-selected-row': isRowSelected });
   }
 
   noRowsDisplay(tableData, onAddClick, helpLink) {
     if (tableData.length === 1 && tableData[0].__filter) {
       return (
-        <div style={{ position: 'absolute', top: '110px', left: '40%', zIndex: 2000 }}>
+        <div style={{ position: 'absolute', top: '130px', left: '40%', zIndex: 2000 }}>
           <EmptyStateView
             onAddClick={onAddClick}
             helpLink={helpLink}
@@ -144,56 +162,52 @@ export default class BbnaTable extends Component {
   }
 
   render() {
-    const [gridHeight, headerHeight, overscanRowsCount, rowHeight] = [300, 30, 50, 31];
+    // eslint-disable-next-line
+    const [gridHeight, headerHeight, overscanRowsCount] = [300, 30, 50];
     const rowGetter = ({ index }) => this.props.tableData[index];
 
     return (
-      <div className="bbnaTableContainer">
+      <div className="bbnaTableContainer" style={{ height: (this.getTableHeight(this.props.height)) }}>
         {this.noRowsDisplay(this.props.tableData, this.props.onAddClick, this.props.helpLink)}
-        <AutoSizer>
-          {({ width }) => (
-            <FlexTable
-              className="bbna-table-grid"
-              headerClassName="headerColumn"
-              rowClassName={this.rowClassName}
-              headerHeight={headerHeight}
-              height={gridHeight}
-              noRowsRenderer={this.noRowsRenderer}
-              overscanRowCount={overscanRowsCount}
-              rowHeight={rowHeight}
-              rowGetter={rowGetter}
-              rowCount={this.props.tableData.length}
-              width={width}
-            >
-              <FlexColumn
-                headerRenderer={this.checkboxHeaderRenderer}
-                cellRenderer={this.idCellRenderer}
-                dataKey="id"
-                width={31}
-                className="bbna-cell bbna-checkbox"
-                headerClassName="bbna-checkbox"
-              />
-              <FlexColumn
-                headerRenderer={this.sortableHeaderRenderer}
-                cellRenderer={this.nameCellRenderer}
-                label="Name"
-                dataKey="name"
-                width={400}
-                className="bbna-cell"
-                flexGrow={1}
-              />
-              <FlexColumn
-                headerRenderer={this.sortableHeaderRenderer}
-                cellRenderer={this.dateCellRenderer}
-                label="Modified"
-                dataKey="lastEditedUtc"
-                width={200}
-                className="bbna-cell"
-                flexGrow={1}
-              />
-            </FlexTable>
-          ) }
-        </AutoSizer>
+        <FlexTable
+          className="bbna-table-grid"
+          headerClassName="headerColumn"
+          rowClassName={this.rowClassName}
+          headerHeight={headerHeight}
+          height={(this.getTableHeight(this.props.height))}
+          noRowsRenderer={this.noRowsRenderer}
+          overscanRowCount={overscanRowsCount}
+          rowHeight={this.getRowHeight}
+          rowGetter={rowGetter}
+          rowCount={this.props.tableData.length}
+          width={this.props.width}
+        >
+          <FlexColumn
+            headerRenderer={this.checkboxHeaderRenderer}
+            cellRenderer={this.idCellRenderer}
+            dataKey="id"
+            width={31}
+            className="bbna-cell bbna-checkbox"
+            headerClassName="bbna-checkbox"
+          />
+          <FlexColumn
+            headerRenderer={this.sortableHeaderRenderer}
+            cellRenderer={this.nameCellRenderer}
+            label="Name"
+            dataKey="name"
+            width={400}
+            className="bbna-cell"
+            flexGrow={1}
+          />
+          <FlexColumn
+            headerRenderer={this.sortableHeaderRenderer}
+            cellRenderer={this.dateCellRenderer}
+            label="Modified"
+            dataKey="lastEditedUtc"
+            width={240}
+            className="bbna-cell"
+          />
+        </FlexTable>
       </div>
     );
   }

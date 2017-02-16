@@ -10,10 +10,8 @@ export default class TextColumn extends Component {
   render() {
     const { text, onClick } = this.props;
     return (
-      <span className="table-cell" onClick={onClick}>
-        <span title={text} className="table-cell-ellipsis">
-          {text}
-        </span>
+      <span title={text} className="table-cell-ellipsis" onClick={onClick}>
+        {text}
       </span>
     );
   }

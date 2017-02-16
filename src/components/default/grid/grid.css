@@ -4,8 +4,8 @@ body {
 
 /*************** Virtualized grid styles ****************************/
 .FlexTable {
-  width: 100%;
-  margin-top: 15px;
+  /*width: 100%;*/
+  /*margin-top: 15px;*/
 }
 
 .alert {
@@ -16,15 +16,75 @@ body {
   min-height: 455px;
 }*/
 
-div:focus,
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
+div:focus {
     outline: none;
 }
 
-.bbnaTableContainer {
+/*.bbnaTableContainer {
   order: 1;
   flex: 3 0px;
+}*/
+
+.react-datepicker__input-container > input {
+  width: 100px;
+  height: 30px;
+  padding: 3px;
+}
+
+.react-datepicker {
+  font-size: 14px !important;
+}
+
+.react-datepicker__current-month {
+  font-size: 14px !important;
+}
+
+.react-datepicker__navigation {
+  border: 0.70rem solid transparent !important;
+}
+
+.react-datepicker__navigation--previous {
+  border-right-color: #ccc !important;
+}
+
+.react-datepicker__navigation--next {
+  border-left-color: #ccc !important;
+}
+
+.react-datepicker__day-name, .react-datepicker__day {
+  width: 2.1rem !important;
+  line-height: 2.3rem !important;
+}
+
+.react-datepicker__month-container {
+  width: 200px !important;
+  min-height: 200px !important;
+}
+
+.react-datepicker__month {
+  width: 100% !important;
+}
+
+.react-datepicker__close-icon::after {
+  padding: 0px;
+  line-height: 1.2;
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+
+.input-group {
+    vertical-align: middle;
+    position: static;
+    padding: 2px;
+}
+
+.input-group-addon {
+  padding: 6px 3px;
+  height: 30px;
+}
+
+.input-group > input {
+  width: 100%;
+  height: 90%;
 }

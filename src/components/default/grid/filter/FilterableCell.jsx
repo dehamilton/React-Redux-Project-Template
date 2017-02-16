@@ -1,8 +1,8 @@
 /* eslint-disable prefer-rest-params, react/react-in-jsx-scope */
-import React, { PropTypes, Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as filterActions from './actions/actions';
+import React from 'react';
+import FilterDate from './FilterDate';
+import FilterInput from './FilterInput';
+import FilterClear from './FilterClear';
 
 /*
   Decorator for BbnaTable cell renderers
@@ -15,7 +15,7 @@ export default function filterableCell() {
 function handleDescriptor(target, key, descriptor, filterOptions) {
   const callback = descriptor.value;
 
-  let filterType = 'string';
+  let filterType = 'text';
   if (typeof filterOptions.filterType !== 'undefined' && filterOptions.filterType.length > 0) {
     filterType = filterOptions.filterType;
   }
@@ -25,58 +25,37 @@ function handleDescriptor(target, key, descriptor, filterOptions) {
     filterProperty = filterOptions.filterProperty;
   }
 
+  let filterMaxLength = 100;
+  if (typeof filterOptions.filterMaxLength !== 'undefined') {
+    filterMaxLength = filterOptions.filterMaxLength;
+  }
+
   return {
     ...descriptor,
     value() {
       const args = arguments;
       if (args[0].rowData.__filter && filterProperty !== '') {
-        return <FilterInput filterName={filterProperty} filterType={filterType} />;
+        switch (filterType) {
+          case 'clear':
+            return (
+              <FilterClear />
+            );
+          case 'date':
+            return (
+              <div className={'input-group'}>
+                <FilterDate filterName={'min' + filterProperty} filterType={filterType} />
+                <span className="input-group-addon">To</span>
+                <FilterDate filterName={'max' + filterProperty} filterType={filterType} />
+              </div>
+            );
+          default:
+            return (
+              <div className={'filter-input'}>
+                <FilterInput filterName={filterProperty} filterType={filterType} maxLength={filterMaxLength} />
+              </div>);
+        }
       }
-
       return callback.apply(this, args);
     },
   };
 }
-
-/*
-  React component returned for filterable cell renderers.
-  Keeps filter-related state out of table component.
-  Use this component to provide different actions based on how you want to filter,
-  or create a separate component for each filter type,
-  or ...
-*/
-@connect(() => ({}),
-  dispatch => bindActionCreators(filterActions, dispatch)
-)
-class FilterInput extends Component {
-  static propTypes = {
-    filterName: PropTypes.string.isRequired,
-    filterType: PropTypes.string.isRequired,
-    filterGrid: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
-    super(props);
-
-    this.state = { filter: '' };
-    this.filter = this.filter.bind(this);
-  }
-
-  filter(e) {
-    this.setState({ filter: e.target.value });
-    this.props.filterGrid(this.props.filterName, this.props.filterType, e.target.value);
-  }
-
-  render() {
-    return (
-      <input
-        id={`search_${this.props.filterName}`}
-        type="search"
-        className="form-control"
-        value={this.state.filter}
-        onChange={e => this.filter(e)}
-      />
-    );
-  }
-}
-
