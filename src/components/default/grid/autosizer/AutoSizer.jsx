@@ -31,7 +31,7 @@ export default class AutoSizer extends Component {
     disableHeight: PropTypes.bool,
 
     /** reenable outstyles */
-    enableOuterStyle: PropTypes.bool,
+    disableOuterStyle: PropTypes.bool,
 
     /** Disable dynamic :width property */
     disableWidth: PropTypes.bool,
@@ -41,7 +41,7 @@ export default class AutoSizer extends Component {
   };
 
   static defaultProps = {
-    enableOuterStyle: false,
+    disableOuterStyle: false,
     onResize: () => {}
   };
 
@@ -78,7 +78,7 @@ export default class AutoSizer extends Component {
   }
 
   render () {
-    const { children, disableHeight, disableWidth, enableOuterStyle } = this.props
+    const { children, disableHeight, disableWidth, disableOuterStyle } = this.props
     const { height, width } = this.state
 
     // Outer div should not force width/height since that may prevent containers from shrinking.
@@ -86,11 +86,11 @@ export default class AutoSizer extends Component {
     // See issue #68 for more information.
     const outerStyle = { overflow: 'visible' }
 
-    if (!disableHeight && enableOuterStyle) {
+    if (!disableHeight && !disableOuterStyle) {
       outerStyle.height = 0
     }
 
-    if (!disableWidth && enableOuterStyle) {
+    if (!disableWidth && !disableOuterStyle) {
       outerStyle.width = 0
     }
 

@@ -1,7 +1,7 @@
 /* global _ */
 
 import React, { Component, PropTypes } from 'react';
-import { FlexTable, FlexColumn } from 'react-virtualized';
+import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
 import classNames from 'classnames';
 import 'react-virtualized/styles.css';
 import CheckBoxColumn from './columns/CheckboxColumn';
@@ -18,8 +18,6 @@ require('./grid.css');
 
 export default class BbnaTable extends Component {
   static propTypes = {
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
     tableData: PropTypes.any.isRequired,
     tableStats: PropTypes.object.isRequired,
     tableSorting: PropTypes.object.isRequired,
@@ -167,47 +165,51 @@ export default class BbnaTable extends Component {
     const rowGetter = ({ index }) => this.props.tableData[index];
 
     return (
-      <div className="bbnaTableContainer" style={{ height: (this.getTableHeight(this.props.height)) }}>
+      <div className="bbnaTableContainer" style={{ height: '100%' }}>
         {this.noRowsDisplay(this.props.tableData, this.props.onAddClick, this.props.helpLink)}
-        <FlexTable
-          className="bbna-table-grid"
-          headerClassName="headerColumn"
-          rowClassName={this.rowClassName}
-          headerHeight={headerHeight}
-          height={(this.getTableHeight(this.props.height))}
-          noRowsRenderer={this.noRowsRenderer}
-          overscanRowCount={overscanRowsCount}
-          rowHeight={this.getRowHeight}
-          rowGetter={rowGetter}
-          rowCount={this.props.tableData.length}
-          width={this.props.width}
-        >
-          <FlexColumn
-            headerRenderer={this.checkboxHeaderRenderer}
-            cellRenderer={this.idCellRenderer}
-            dataKey="id"
-            width={31}
-            className="bbna-cell bbna-checkbox"
-            headerClassName="bbna-checkbox"
-          />
-          <FlexColumn
-            headerRenderer={this.sortableHeaderRenderer}
-            cellRenderer={this.nameCellRenderer}
-            label="Name"
-            dataKey="name"
-            width={400}
-            className="bbna-cell"
-            flexGrow={1}
-          />
-          <FlexColumn
-            headerRenderer={this.sortableHeaderRenderer}
-            cellRenderer={this.dateCellRenderer}
-            label="Modified"
-            dataKey="lastEditedUtc"
-            width={240}
-            className="bbna-cell"
-          />
-        </FlexTable>
+        <AutoSizer disableOuterStyle>
+          {({ width, height }) => (
+            <FlexTable
+              className="bbna-table-grid"
+              headerClassName="headerColumn"
+              rowClassName={this.rowClassName}
+              headerHeight={headerHeight}
+              height={(this.getTableHeight(height))}
+              noRowsRenderer={this.noRowsRenderer}
+              overscanRowCount={overscanRowsCount}
+              rowHeight={this.getRowHeight}
+              rowGetter={rowGetter}
+              rowCount={this.props.tableData.length}
+              width={width}
+            >
+              <FlexColumn
+                headerRenderer={this.checkboxHeaderRenderer}
+                cellRenderer={this.idCellRenderer}
+                dataKey="id"
+                width={31}
+                className="bbna-cell bbna-checkbox"
+                headerClassName="bbna-checkbox"
+              />
+              <FlexColumn
+                headerRenderer={this.sortableHeaderRenderer}
+                cellRenderer={this.nameCellRenderer}
+                label="Name"
+                dataKey="name"
+                width={400}
+                className="bbna-cell"
+                flexGrow={1}
+              />
+              <FlexColumn
+                headerRenderer={this.sortableHeaderRenderer}
+                cellRenderer={this.dateCellRenderer}
+                label="Modified"
+                dataKey="lastEditedUtc"
+                width={240}
+                className="bbna-cell"
+              />
+            </FlexTable>
+          ) }
+        </AutoSizer>
       </div>
     );
   }
