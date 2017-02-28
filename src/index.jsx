@@ -6,7 +6,7 @@ import Root from './_app/Root';
 
 require('./_utils/axios');
 
-const appHistory = useRouterHistory(createHashHistory)();
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 ReactDOM.render(
   <Root history={appHistory} />,

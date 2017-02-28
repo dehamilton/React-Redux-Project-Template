@@ -167,7 +167,7 @@ export default class BbnaTable extends Component {
     return (
       <div className="bbnaTableContainer" style={{ height: '100%' }}>
         {this.noRowsDisplay(this.props.tableData, this.props.onAddClick, this.props.helpLink)}
-        <AutoSizer disableOuterStyle>
+        <AutoSizer>
           {({ width, height }) => (
             <FlexTable
               className="bbna-table-grid"

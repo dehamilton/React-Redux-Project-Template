@@ -1,8 +1,9 @@
 /* global __DEVTOOLS__ */
 
 import { handleActions } from 'redux-actions';
+import { handleActionsExt } from '_utils/handleActionsExt';
 import immutable from 'immutable';
-import { MODULE_INITIALIZED, MODULE_LOAD_DATA, MODULE_LOAD_DATA_MORE } from 'constants/actionConstants';
+import { GlobalActions } from 'actions/export';
 import filterReducers from 'components/default/grid/filter/actions/reducers';
 import tableStatsReducers from 'components/default/grid/tableStats/actions/reducers';
 import gridReducers from 'components/default/grid/actions/reducers';
@@ -31,16 +32,10 @@ const initialState = immutable.fromJS({
 });
 
 const changeThisName = handleActions({
+  ...handleActionsExt(GlobalActions),
   ...gridReducers,
   ...filterReducers,
   ...tableStatsReducers,
-  [MODULE_INITIALIZED]: state => (state),
-  [MODULE_LOAD_DATA]: (state, action) => (state.merge({ tableData: action.data, tableDataOriginal: action.data })),
-  [MODULE_LOAD_DATA_MORE]: (state, action) => {
-    const data = state.get('tableData').toJS();
-    const newData = data.concat(action.data);
-    return state.merge({ tableData: newData, tableDataOriginal: newData });
-  },
 }, initialState);
 
 export default changeThisName;

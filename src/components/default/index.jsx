@@ -1,11 +1,15 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreatorsExt } from '_utils/bindActionCreatorsExt';
+import { GlobalActions } from 'actions/export';
 import FilterableTable from './grid/FilterableTable';
 
+@connect(state => ({ state }),
+  dispatch => bindActionCreatorsExt(GlobalActions, dispatch)
+)
 export default class MainContainer extends Component {
   static propTypes = {
     initModule: PropTypes.func.isRequired,
-    testTypecheck: PropTypes.func.isRequired,
     loadData: PropTypes.func.isRequired,
     loadMoreData: PropTypes.func.isRequired,
     state: PropTypes.object.isRequired,
@@ -13,7 +17,6 @@ export default class MainContainer extends Component {
 
   componentWillMount() {
     this.props.initModule();
-    this.props.testTypecheck(true, 'string');
     this.props.loadData();
   }
 
@@ -21,7 +24,6 @@ export default class MainContainer extends Component {
     const { changeThisName } = this.props.state;
     return (
       <div style={{ height: '90%' }}>
-        <div>See Input Samples, <Link to="/inputs">here</Link>.</div>
         <div>Load more data <button onClick={this.props.loadMoreData}>Load</button></div>
         <FilterableTable
           tableData={changeThisName.get('tableData').toJS()}

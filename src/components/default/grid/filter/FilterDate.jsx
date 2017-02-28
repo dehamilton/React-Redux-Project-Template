@@ -32,8 +32,6 @@ export default class FilterDate extends Component {
     const date = nextProps.filters[nextProps.filterName] === ''
                   ? null : moment(nextProps.filters[this.props.filterName], 'YYYY-MM-DD');
 
-    console.log('FilterDate', date);
-
     this.setState({ startDate: date });
   }
 
