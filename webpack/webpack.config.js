@@ -1,3 +1,4 @@
+/* eslint-disable */
 var path = require('path');
 var webpack = require('webpack');
 
@@ -24,20 +25,26 @@ module.exports = {
     new webpack.IgnorePlugin(/regenerator|nodent|js-beautify/, /ajv/)
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'src'],
-  },
-  eslint: {
-    configFile: './.eslintrc.json'
+    extensions: ['.js', '.jsx'],
+    modules: ['node_modules', './src'],
   },
   module: {
-    loaders: [
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.(js|jsx)$/, loaders: ['babel', 'eslint-loader'], exclude: /node_modules/ },
-      { test: /\.scss$/, loaders: ['style', 'css', 'sass'] },
-      { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192'}
+    rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        use:
+        [
+          {
+            loader: 'eslint-loader',
+            options: { configFile: './.eslintrc.json' }
+          }
+        ],
+        exclude: /node_modules/ },
+      { test: /\.(js|jsx)$/, use: ['babel-loader'], exclude: /node_modules/ },
+      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] },
+      { test: /\.(png|jpg|gif)$/, use: ['url-loader?limit=8192'] }
     ]
-  },
-  progress: true
+  }
 };

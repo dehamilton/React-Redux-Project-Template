@@ -15,6 +15,10 @@ export default class FilterInput extends Component {
     maxLength: PropTypes.number,
   };
 
+  static defaultProps = {
+    maxLength: 200,
+  };
+
   constructor(props) {
     super(props);
 

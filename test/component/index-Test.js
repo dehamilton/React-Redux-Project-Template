@@ -6,7 +6,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import chai, { expect } from 'chai';
 import chaiEnzyme from 'chai-enzyme';
-import MainContainer from '../../src/components/index.jsx';
+import MainContainer from '../../src/components/default/index.jsx';
 
 chai.use(chaiEnzyme());
 

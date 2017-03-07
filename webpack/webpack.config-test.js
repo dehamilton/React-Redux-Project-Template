@@ -1,6 +1,6 @@
 var nodeExternals = require('webpack-node-externals');
 var webpack = require('webpack');
- 
+
 module.exports = {
   plugins: [
     new webpack.DefinePlugin({
@@ -9,12 +9,11 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    modulesDirectories: ['node_modules', 'src'],
+    modules: ['node_modules', './src'],
   },
   module: {
     loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['babel'] },
+      { test: /\.(js|jsx)$/, use: ['babel-loader'], exclude: /node_modules/ },
     ],
   },
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
