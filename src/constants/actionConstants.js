@@ -1,4 +1,4 @@
-import { POSTAL_RECEIVE_MESSAGE } from 'redux-postal-middleware';
+import { POSTAL_RECEIVE_MESSAGE } from '../messaging/postal-middleware';
 
 // Grid constants
 export const SELECT_ITEM = 'template/grid/SELECT_ITEM';

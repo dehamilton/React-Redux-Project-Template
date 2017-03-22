@@ -20,18 +20,18 @@ const loggerMiddleware = createLogger({
 });
 
 /* eslint-disable import/imports-first */
-import { applicationStateSchema } from 'reducers/state-schema';
-import createValidator from 'redux-state-validator';
-/* eslint-enable import/imports-first */
-const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['changeReducerName'] });
+// import { applicationStateSchema } from 'reducers/state-schema';
+// import createValidator from 'redux-state-validator';
+// /* eslint-enable import/imports-first */
+// const validatorMiddleware = createValidator({ schema: applicationStateSchema, state: ['changeReducerName'] });
 
 // small middleware to set window variable with result of state for debugging
 const setWindowState = store => next => (action) => {
   const result = next(action);
-  
+
   if (!window.stateObject) window.stateObject = {};
   window.stateObject = Object.assign({}, window.stateObject, store.getState());
-  
+
   return result;
 };
 
@@ -45,7 +45,6 @@ const createStoreWithMiddleware = compose(
     setWindowState,
     postalMiddleware,
     sagaMiddleware,
-    validatorMiddleware,
     loggerMiddleware),
   DevTools.instrument(),
   persistState(getDebugSessionKey())
@@ -64,7 +63,7 @@ function getDebugSessionKey() {
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
   sagaMiddleware.run(rootSaga);
-  
+
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../../reducers', () => {
