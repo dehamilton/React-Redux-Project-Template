@@ -1,4 +1,3 @@
-/* global _ */
 import immutable, { List, Map } from 'immutable';
 
 export function sortBy(items, by, direction) {

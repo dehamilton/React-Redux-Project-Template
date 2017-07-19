@@ -1,5 +1,5 @@
 /* eslint object-shorthand: 0 */
-/* global __DEVTOOLS__ */
+
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';

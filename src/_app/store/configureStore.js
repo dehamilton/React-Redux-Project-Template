@@ -1,4 +1,3 @@
-/* global __DEVTOOLS__ */
 let configStore = () => {};
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line global-require

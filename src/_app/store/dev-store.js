@@ -1,9 +1,9 @@
 /* eslint object-shorthand: 0, import/first: 0 */
-/* global __DEVTOOLS__ */
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import promiseMiddleware from 'redux-promise';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
 
 // Messaging setup
@@ -28,10 +28,10 @@ const validatorMiddleware = createValidator({ schema: applicationStateSchema, st
 // small middleware to set window variable with result of state for debugging
 const setWindowState = store => next => (action) => {
   const result = next(action);
-  
+
   if (!window.stateObject) window.stateObject = {};
   window.stateObject = Object.assign({}, window.stateObject, store.getState());
-  
+
   return result;
 };
 
@@ -64,7 +64,7 @@ function getDebugSessionKey() {
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);
   sagaMiddleware.run(rootSaga);
-  
+
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../../reducers', () => {

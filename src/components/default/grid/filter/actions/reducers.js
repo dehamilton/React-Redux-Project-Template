@@ -1,5 +1,3 @@
-/* global _ */
-
 import {
   FILTER_GRID,
   FILTER_GRID_CLEAR,

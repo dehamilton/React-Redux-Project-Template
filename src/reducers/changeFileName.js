@@ -1,5 +1,3 @@
-/* global __DEVTOOLS__ */
-
 import { handleActions } from 'redux-actions';
 import { handleActionsExt } from '_utils/handleActionsExt';
 import immutable from 'immutable';

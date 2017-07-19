@@ -1,5 +1,3 @@
-/* global _ */
-
 import React, { Component, PropTypes } from 'react';
 import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
 import classNames from 'classnames';
