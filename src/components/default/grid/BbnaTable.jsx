@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
 import classNames from 'classnames';
 import 'react-virtualized/styles.css';

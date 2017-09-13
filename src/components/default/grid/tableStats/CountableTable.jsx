@@ -1,6 +1,7 @@
 /* global _ */
 /* eslint-disable */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as tableStatsAction from './actions/actions';

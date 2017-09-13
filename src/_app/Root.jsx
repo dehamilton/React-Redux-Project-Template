@@ -1,5 +1,6 @@
 /* global __DEVTOOLS__ */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import configureStore from './store/configureStore';

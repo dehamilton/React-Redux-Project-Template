@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 require('./EmptyStateView.scss');
 
@@ -8,10 +9,10 @@ export default class EmptyStateView extends Component {
     onAddClick: PropTypes.func.isRequired,
     helpLink: PropTypes.string.isRequired,
   }
-     
+
   render() {
     const { onAddClick, helpLink } = this.props;
-      
+
     return (
       <div className="noRows">
         <div className="noRows-forms">
