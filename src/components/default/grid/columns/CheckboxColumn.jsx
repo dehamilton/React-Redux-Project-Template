@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class CheckboxColumn extends Component {
-
   static propTypes = {
     checked: PropTypes.bool.isRequired,
     clickAction: PropTypes.func.isRequired,

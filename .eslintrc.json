@@ -5,12 +5,6 @@
     "browser": true,
     "node": true
   },
-  "ecmaFeatures": {
-    "experimentalObjectRestSpread": true,
-    "destructuring": true,
-    "spread": true,
-    "jsx": true
-  },
   "rules": {
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,

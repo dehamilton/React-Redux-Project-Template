@@ -2,7 +2,6 @@
 import React, { Component, PropTypes } from 'react';
 
 export default class IndeterminateCheckBoxHeader extends Component {
-
   static propTypes = {
     tableStats: PropTypes.object.isRequired,
     clickAction: PropTypes.func.isRequired,

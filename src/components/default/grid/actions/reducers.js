@@ -45,8 +45,8 @@ function toggleAllSelection(state: Map): Map {
   const stats = computeTableStats(data);
 
   let selection = state.get('tableSelection');
-  selection = selection.set('latestIdSelected',
-                data.size > 0 && stats.get('allSelected') ? data.first().get('id') : '');
+  selection = selection
+    .set('latestIdSelected', data.size > 0 && stats.get('allSelected') ? data.first().get('id') : '');
   selection = selection.set('latestSelectionType', 'multiple');
 
   return state.merge({
@@ -92,7 +92,7 @@ const gridReducers = {
   [actionConstants.SELECT_ITEM_RANGE]: (state, action) => selectRange(state, action),
   [actionConstants.TOGGLE_SELECT_ALL_ITEMS]: state => toggleAllSelection(state),
   [actionConstants.COLUMN_SORT_CHANGED]: (state, action) =>
-        changeSorting(state, action.payload.by, action.payload.direction),
+    changeSorting(state, action.payload.by, action.payload.direction),
   [actionConstants.ITEMS_DELETED]: state => handleItemsHasBeenRemoved(state),
 };
 

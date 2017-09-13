@@ -5,7 +5,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 class Main extends Component {
-
   static propTypes = {
     children: PropTypes.any.isRequired,
   }

@@ -61,8 +61,8 @@ export function toggleSelectAllItems() {
 
 export function changeSort(columnKey, direction) {
   return (dispatch, getState) => {
-    const newDirection = getState().changeThisName.getIn(['tableSorting', 'by']) === columnKey
-                          ? toggleSortingDirection(direction) : 'ASC';
+    const newDirection = getState().changeThisName
+      .getIn(['tableSorting', 'by']) === columnKey ? toggleSortingDirection(direction) : 'ASC';
     return dispatch(changeSortAction({ by: columnKey, direction: newDirection }));
   };
 }

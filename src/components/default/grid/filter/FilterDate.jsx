@@ -21,7 +21,7 @@ export default class FilterDate extends Component {
   constructor(props) {
     super(props);
     const date = this.props.filters[this.props.filterName] === ''
-                  ? null : moment(this.props.filters[this.props.filterName], 'MM/DD/YYYY');
+      ? null : moment(this.props.filters[this.props.filterName], 'MM/DD/YYYY');
 
     this.state = {
       startDate: date,
@@ -30,7 +30,7 @@ export default class FilterDate extends Component {
 
   componentWillReceiveProps(nextProps) {
     const date = nextProps.filters[nextProps.filterName] === ''
-                  ? null : moment(nextProps.filters[this.props.filterName], 'YYYY-MM-DD');
+      ? null : moment(nextProps.filters[this.props.filterName], 'YYYY-MM-DD');
 
     this.setState({ startDate: date });
   }

@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 import { SortIndicator } from 'react-virtualized';
 
 export default class SortableHeader extends Component {
-
   static propTypes = {
     label: PropTypes.string.isRequired,
     columnKey: PropTypes.string.isRequired,
@@ -15,7 +14,7 @@ export default class SortableHeader extends Component {
     super(props);
     this.handleSortChanged = this.handleSortChanged.bind(this);
   }
-  
+
   handleSortChanged() {
     const { onSortChanged, columnKey, sorting } = this.props;
     onSortChanged(columnKey, sorting.direction);
@@ -37,4 +36,4 @@ export default class SortableHeader extends Component {
       </a>
     );
   }
- }
+}

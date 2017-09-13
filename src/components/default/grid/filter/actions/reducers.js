@@ -35,6 +35,7 @@ function filterTableData(state, action) {
 function clearFilters(state) {
   const filters = state.get('tableFilters').toJS();
   const clearedFilters = {};
+  // eslint-disable-next-line no-return-assign
   Object.keys(filters).forEach(k => (clearedFilters[k] = ''));
 
   return state.merge({ tableData: state.get('tableDataOriginal'), tableFilters: clearedFilters });

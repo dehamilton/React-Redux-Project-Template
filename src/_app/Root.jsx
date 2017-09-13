@@ -16,7 +16,6 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
 
 
 export default class Root extends Component {
-
   static propTypes = {
     history: PropTypes.any.isRequired,
   };
