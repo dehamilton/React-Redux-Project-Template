@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events, object-curly-newline */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AutoSizer, Table, Column } from 'react-virtualized';
@@ -109,7 +111,7 @@ export default class BbnaTable extends Component {
       <div className="bbna-col-date" onClick={e => this.onCellClick(e, cellInfo)}>
         <ItemDateTimeColumn
           date={cellInfo.rowData.lastEditedUtc}
-          format={'MM/DD/YYYY'}
+          format="MM/DD/YYYY"
         />
       </div>
     );

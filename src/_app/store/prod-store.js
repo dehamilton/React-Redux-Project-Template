@@ -9,9 +9,10 @@ import rootReducer from 'reducers';
 import { CHANNEL, TOPIC } from 'constants/messageConstants';
 import createPostalMiddleware, { rootSaga } from 'messaging/postal-include';
 
-const { postalMiddleware, sagaMiddleware } = createPostalMiddleware(
-  { channel: CHANNEL, topic: `${TOPIC}.*` }
-);
+const { postalMiddleware, sagaMiddleware } = createPostalMiddleware({
+  channel: CHANNEL,
+  topic: `${TOPIC}.*`,
+});
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware,

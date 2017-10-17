@@ -27,7 +27,7 @@ export default class FilterInput extends Component {
     this.onChange = this.onChange.bind(this);
 
     this.state = {
-      focused: false,
+      // focused: false,
       filter: this.props.filters[this.props.filterName],
     };
   }

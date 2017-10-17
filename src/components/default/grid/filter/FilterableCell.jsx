@@ -17,17 +17,17 @@ function handleDescriptor(target, key, descriptor, filterOptions) {
 
   let filterType = 'text';
   if (typeof filterOptions.filterType !== 'undefined' && filterOptions.filterType.length > 0) {
-    filterType = filterOptions.filterType;
+    ({ filterType } = filterOptions);
   }
 
   let filterProperty = '';
   if (typeof filterOptions.filterProperty !== 'undefined' && filterOptions.filterProperty.length > 0) {
-    filterProperty = filterOptions.filterProperty;
+    ({ filterProperty } = filterOptions);
   }
 
   let filterMaxLength = 100;
   if (typeof filterOptions.filterMaxLength !== 'undefined') {
-    filterMaxLength = filterOptions.filterMaxLength;
+    ({ filterMaxLength } = filterOptions);
   }
 
   return {
@@ -50,7 +50,7 @@ function handleDescriptor(target, key, descriptor, filterOptions) {
           //   );
           default:
             return (
-              <div className={'filter-input'}>
+              <div className="filter-input">
                 <FilterInput filterName={filterProperty} filterType={filterType} maxLength={filterMaxLength} />
               </div>);
         }

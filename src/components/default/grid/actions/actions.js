@@ -45,7 +45,8 @@ export function itemSelected(itemId, deselectAll, rowIndex, pressedKey) {
 
     const indexItem = _.findIndex(
       state.get('tableData').toJS(),
-      { id: state.getIn(['tableSelection', 'latestIdSelected']) });
+      { id: state.getIn(['tableSelection', 'latestIdSelected']) }
+    );
 
     const minIndex = rowIndex < indexItem ? rowIndex : indexItem;
     const maxIndex = rowIndex >= indexItem ? rowIndex : indexItem;

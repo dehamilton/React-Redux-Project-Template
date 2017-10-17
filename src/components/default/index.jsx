@@ -5,7 +5,8 @@ import { bindActionCreatorsExt } from '_utils/bindActionCreatorsExt';
 import { GlobalActions } from 'actions/export';
 import FilterableTable from './grid/FilterableTable';
 
-@connect(state => ({ state }),
+@connect(
+  state => ({ state }),
   dispatch => bindActionCreatorsExt(GlobalActions, dispatch)
 )
 export default class MainContainer extends Component {
@@ -33,7 +34,7 @@ export default class MainContainer extends Component {
           isLoading={changeThisName.get('isLoading')}
           openItemForEdit={() => {}}
           onAddClick={() => {}}
-          helpLink={''}
+          helpLink=""
         />
       </div>
     );

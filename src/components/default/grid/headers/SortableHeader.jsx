@@ -26,12 +26,13 @@ export default class SortableHeader extends Component {
   }
 
   render() {
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars, object-curly-newline
     var { label, sorting, columnKey, onSortChanged, ...rest } = this.props;
 
     const mustRenderSortIndicator = sorting.by === columnKey;
 
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events
       <a {...rest} onClick={this.handleSortChanged}>
         {label} {mustRenderSortIndicator ? this.renderSortDir() : null }
       </a>

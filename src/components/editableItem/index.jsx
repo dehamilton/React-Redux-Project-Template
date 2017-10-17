@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,8 @@ import { connect } from 'react-redux';
 import { bindActionCreatorsExt } from '_utils/bindActionCreatorsExt';
 import { GlobalActions } from 'actions/export';
 
-@connect(state => ({ state }),
+@connect(
+  state => ({ state }),
   dispatch => bindActionCreatorsExt(GlobalActions, dispatch)
 )
 export default class EditableItem extends Component {

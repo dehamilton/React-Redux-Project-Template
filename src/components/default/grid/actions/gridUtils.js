@@ -10,6 +10,7 @@ export function sortBy(items, by, direction) {
 }
 
 function sortAlphaNum(a, b) {
+  // eslint-disable-next-line no-restricted-globals
   if (isNaN(a) && isNaN(b)) {
     return a.localeCompare(b);
   }

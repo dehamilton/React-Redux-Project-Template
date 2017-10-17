@@ -7,4 +7,5 @@ import filterableTableHoc from './filter/FilterableTable';
 
 export default connect(
   () => ({}),
-  dispatch => bindActionCreators(gridActions, dispatch))(filterableTableHoc(BbnaTable));
+  dispatch => bindActionCreators(gridActions, dispatch)
+)(filterableTableHoc(BbnaTable));
