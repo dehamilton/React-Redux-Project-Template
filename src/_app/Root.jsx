@@ -1,8 +1,7 @@
 /* global __DEVTOOLS__ */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { HashRouter } from 'react-router-dom';
 import configureStore from './store/configureStore';
 import routes from '../routes';
 
@@ -15,18 +14,13 @@ if (typeof __DEVTOOLS__ !== 'undefined' && __DEVTOOLS__) {
   createDevToolsWindow(store);
 }
 
-
 export default class Root extends Component {
-  static propTypes = {
-    history: PropTypes.any.isRequired,
-  };
-
   render() {
     return (
       <Provider store={store} key="provider">
-        <Router history={this.props.history}>
+        <HashRouter>
           {routes}
-        </Router>
+        </HashRouter>
       </Provider>
     );
   }
