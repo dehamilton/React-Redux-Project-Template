@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
+import { AutoSizer, Table, Column } from 'react-virtualized';
 import classNames from 'classnames';
 import 'react-virtualized/styles.css';
 import CheckBoxColumn from './columns/CheckboxColumn';
@@ -103,7 +103,7 @@ export default class BbnaTable extends Component {
     );
   }
 
-  @filterableCell.bind({ filterProperty: 'lastEditedUtc', filterType: 'date' })
+  // @filterableCell.bind({ filterProperty: 'lastEditedUtc', filterType: 'date' })
   dateCellRenderer(cellInfo) {
     return (
       <div className="bbna-col-date" onClick={e => this.onCellClick(e, cellInfo)}>
@@ -168,7 +168,7 @@ export default class BbnaTable extends Component {
         {this.noRowsDisplay(this.props.tableData, this.props.onAddClick, this.props.helpLink)}
         <AutoSizer>
           {({ width, height }) => (
-            <FlexTable
+            <Table
               className="bbna-table-grid"
               headerClassName="headerColumn"
               rowClassName={this.rowClassName}
@@ -181,7 +181,7 @@ export default class BbnaTable extends Component {
               rowCount={this.props.tableData.length}
               width={width}
             >
-              <FlexColumn
+              <Column
                 headerRenderer={this.checkboxHeaderRenderer}
                 cellRenderer={this.idCellRenderer}
                 dataKey="id"
@@ -189,7 +189,7 @@ export default class BbnaTable extends Component {
                 className="bbna-cell bbna-checkbox"
                 headerClassName="bbna-checkbox"
               />
-              <FlexColumn
+              <Column
                 headerRenderer={this.sortableHeaderRenderer}
                 cellRenderer={this.nameCellRenderer}
                 label="Name"
@@ -198,7 +198,7 @@ export default class BbnaTable extends Component {
                 className="bbna-cell"
                 flexGrow={1}
               />
-              <FlexColumn
+              <Column
                 headerRenderer={this.sortableHeaderRenderer}
                 cellRenderer={this.dateCellRenderer}
                 label="Modified"
@@ -206,7 +206,7 @@ export default class BbnaTable extends Component {
                 width={240}
                 className="bbna-cell"
               />
-            </FlexTable>
+            </Table>
           ) }
         </AutoSizer>
       </div>

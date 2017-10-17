@@ -1,6 +1,6 @@
 /* eslint-disable prefer-rest-params, react/react-in-jsx-scope */
 import React from 'react';
-import FilterDate from './FilterDate';
+// import FilterDate from './FilterDate';
 import FilterInput from './FilterInput';
 import FilterClear from './FilterClear';
 
@@ -40,14 +40,14 @@ function handleDescriptor(target, key, descriptor, filterOptions) {
             return (
               <FilterClear />
             );
-          case 'date':
-            return (
-              <div className={'input-group'}>
-                <FilterDate filterName={'min' + filterProperty} filterType={filterType} />
-                <span className="input-group-addon">To</span>
-                <FilterDate filterName={'max' + filterProperty} filterType={filterType} />
-              </div>
-            );
+          // case 'date':
+          //   return (
+          //     <div className={'input-group'}>
+          //       <FilterDate filterName={'min' + filterProperty} filterType={filterType} />
+          //       <span className="input-group-addon">To</span>
+          //       <FilterDate filterName={'max' + filterProperty} filterType={filterType} />
+          //     </div>
+          //   );
           default:
             return (
               <div className={'filter-input'}>

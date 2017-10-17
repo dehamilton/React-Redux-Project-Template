@@ -8,7 +8,7 @@
   background-color: #d6d6d6!important;
 }
 
-.bbna-table-grid .FlexTable__headerColumn {
+.bbna-table-grid .ReactVirtualized__Table__headerColumn {
   -webkit-box-align: center;
   align-items: center;
   display: flex;
@@ -32,12 +32,12 @@
   background-image: none  !important;
 }
 
-.bbna-table-grid .Grid.FlexTable__Grid {
+.bbna-table-grid .Grid.ReactVirtualized__Table__Grid {
   -webkit-box-shadow: inset 0px 0px 0px 1px #ddd;
   -moz-box-shadow: inset 0px 0px 0px 1px #ddd;
   box-shadow: inset 0px 0px 0px 1px #ddd;
-  overflow: auto !important;  
-  overflow-x: hidden !important;  
+  overflow: auto !important;
+  overflow-x: hidden !important;
   user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
@@ -50,11 +50,11 @@
   display: table !important;
 }
 
-.bbna-table-grid .FlexTable__row:hover {
+.bbna-table-grid .ReactVirtualized__Table__row:hover {
   background-color: #f5f5f5;
 }
 
-.bbna-table-grid .FlexTable__headerRow {
+.bbna-table-grid .ReactVirtualized__Table__headerRow {
     border-top: 1px solid #ddd;
     background: #666;
     color: #fff;
@@ -117,21 +117,21 @@
 }
 
 .bbna-table-grid .headerColumn div, .bbna-table-grid .bbna-cell div {
-    padding: 0px 9px;   
+    padding: 0px 9px;
 }
 
 .bbna-table-grid .headerColumn:first-child, .bbna-table-grid .bbna-cell:first-child {
-    border-left: 1px solid #ddd;   
+    border-left: 1px solid #ddd;
 }
 
-.bbna-table-grid .FlexTable__rowColumn {
-  margin: 0px;    
+.bbna-table-grid .ReactVirtualized__Table__rowColumn {
+  margin: 0px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.bbna-table-grid .bbna-checkbox .FlexTable__truncatedColumnText {
+.bbna-table-grid .bbna-checkbox .ReactVirtualized__Table__truncatedColumnText {
   overflow: visible;
 }
 
@@ -140,7 +140,7 @@
   padding-right: 100px;
   width: 100%;
 
-  .FlexTable__sortableHeaderIcon {
+  .ReactVirtualized__Table__sortableHeaderIcon {
     height: 1.7em;
     width: 2em;
   }
@@ -161,7 +161,7 @@
 }
 
 .bbna-table-grid .headerColumn a {
-  padding: 0px 10px;   
+  padding: 0px 10px;
   height: 40px;
   width: 100%;
   display: flex;
