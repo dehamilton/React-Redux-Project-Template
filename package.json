@@ -87,7 +87,7 @@
     "react-datepicker": "^0.51.0",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
-    "react-router": "^2.8.1",
+    "react-router-dom": "^4.2.2",
     "react-virtualized": "^7.24.3",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
