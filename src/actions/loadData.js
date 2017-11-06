@@ -1,9 +1,9 @@
 export const loadData = {
   type: 'loadData',
-  get action() {
-    return () => (
+  action() {
+    return (
       {
-        type: this.type,
+        type: loadData.type,
         data: [
           { id: '1',
             name: 'Test Row 1',
@@ -39,8 +39,8 @@ export const loadData = {
       }
     );
   },
-  get create() {
-    return () => dispatch => dispatch(this.action());
+  create() {
+    return dispatch => dispatch(loadData.action());
   },
   get reducer() {
     return (state, action) => (state.merge({ tableData: action.data, tableDataOriginal: action.data }));
