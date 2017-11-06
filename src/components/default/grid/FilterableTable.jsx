@@ -5,7 +5,9 @@ import BbnaTable from './BbnaTable';
 import filterableTableHoc from './filter/FilterableTable';
 // import statsTableHoc from './tableStats/CountableTable';
 
+const baseActions = gridActions.createGridActions('changeThisName');
+
 export default connect(
   () => ({}),
-  dispatch => bindActionCreators(gridActions, dispatch)
+  dispatch => bindActionCreators({ ...baseActions, deleteFees: gridActions.deleteFees }, dispatch)
 )(filterableTableHoc(BbnaTable));
